@@ -1,0 +1,70 @@
+/* Center the login form on the page */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Style the card */
+  .card {
+    padding: 2rem;
+    width: 350px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    text-align: center;
+  }
+  
+  /* Header styling */
+  .card h2 {
+    margin-bottom: 1.5rem;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Form fields */
+  .p-field {
+    margin-bottom: 1.2rem;
+  }
+  
+  .p-field label {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 0.5rem;
+  }
+  
+  input[pInputText] {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  input[pInputText]:focus {
+    outline: none;
+    border-color: #2575fc;
+    box-shadow: 0 0 3px #2575fc;
+  }
+  
+  /* Login button */
+  .login-button {
+    width: 100%;
+    background-color: #2575fc;
+    border: none;
+    color: white;
+    padding: 0.8rem;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #1e5dc7;
+  }
+  
