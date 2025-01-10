@@ -1,0 +1,38 @@
+<p-sidebar
+  [(visible)]="isOpen"
+  [style]="{ width: '250px' }"
+  [position]="'left'"
+  [baseZIndex]="1000"
+  (onHide)="isOpenChange.emit(false)"
+>
+  <button
+    pButton
+    type="button"
+    icon="pi pi-times"
+    (click)="toggle()"
+    class="close-button"
+  ></button>
+  <div class="sidebar-content">
+    <!-- Company Logo -->
+    <div class="company-logo">
+      <img src="./images/fulllogo_nobuffer.png" alt="Indiminds Technology Logo" />
+    </div>
+    <!-- Dropdown Menu Section -->
+    <div class="menu-section">
+      <h3>Daily Task</h3>
+      <ul class="submenu">
+        <li>
+          Attendance
+        </li>
+        <li>
+          Task List
+          <ul class="dropdown">
+            <li>View Tasks</li>
+            <li>Add Task</li>
+            <li>Edit Task</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</p-sidebar>

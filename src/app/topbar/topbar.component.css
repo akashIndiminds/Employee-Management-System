@@ -1,0 +1,82 @@
+/* Top Bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1c2025;
+  color: white;
+  padding: 5px 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+/* Company Name */
+.company-name {
+  flex: 1; /* Ensures it takes available space */
+  text-align: center;
+  font-size: 1.9rem; /* Default size for desktop */
+  font-weight: bold;
+  color: #ffffff; /* Accent color for branding */
+}
+
+/* Hamburger Icon */
+.hamburger {
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  margin-right: 1px; /* Add space between icon and company name */
+}
+
+.hamburger:hover {
+  color: #1abc9c; /* Highlight on hover */
+}
+
+/* Right Section: Profile Logo and Welcome Text */
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between logo and text */
+}
+
+/* Profile Logo */
+.profile-logo {
+  width: 40px; /* Adjust size for mobile */
+  height: 40px;
+  border-radius: 50%; /* Circular logo */
+  object-fit: cover; /* Ensure the logo maintains aspect ratio */
+  transition: width 0.3s ease, height 0.3s ease; /* Smooth scaling */
+}
+
+/* Welcome Text */
+.welcome-text {
+  font-size: 1rem; /* Default size for desktop */
+  font-weight: 500;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hamburger {
+    font-size: 20px; /* Smaller icon size */
+  }
+
+  .company-name {
+    font-size: 0.8rem; /* Slightly smaller font */
+  }
+
+  .profile-logo {
+    width: 20px; /* Smaller logo for mobile */
+    height: 20px;
+  }
+
+  .welcome-text {
+    font-size: 0.8rem; /* Slightly smaller text for mobile */
+  }
+
+  .top-bar {
+    padding: 8px 15px; /* Adjust padding for smaller screens */
+  }
+}

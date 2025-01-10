@@ -1,12 +1,26 @@
+<!-- TopBar: Displayed at the top -->
+<app-topbar
+  [employeeFullName]="employeeDetails?.employee_full_name || ''"
+  (toggleSidebar)="toggleSidebar()"
+></app-topbar>
+
+<app-sidebar 
+  [(isOpen)]="isSidebarOpen"
+></app-sidebar>
+
+<!-- Main Dashboard Layout -->
 <div class="dashboard-container">
-    <div class="welcome-message">
-      <h1>Welcome to the Dashboard!</h1>
-      <p>Your Employee ID: {{ employeeId }}</p>
-    </div>
-    <div class="dashboard-content">
-      <h2>Dashboard Overview</h2>
-      <p>Here you can manage your details, view reports, and more.</p>
-      <button class="logout-button" (click)="logout()">Logout</button>
-    </div>
+  <div class="welcome-message">
+    <h1>Welcome to the Dashboard!</h1>
+    <p>Your Employee ID: {{ employeeId }}</p>
+    <p *ngIf="employeeDetails">
+      <strong>Employee Name:</strong> {{ employeeDetails.employee_full_name }}
+    </p>
+    <p *ngIf="!employeeDetails && employeeId">Loading employee details...</p>
   </div>
-  
+
+  <div class="dashboard-content">
+    <h2>Dashboard Overview</h2>
+    <p>Here you can manage your details, view reports, and more.</p>
+  </div>
+</div>
