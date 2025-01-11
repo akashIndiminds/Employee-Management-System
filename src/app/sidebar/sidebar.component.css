@@ -93,7 +93,7 @@
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
+@media (max-width: px) {
   .sidebar-content {
     padding: 15px;
   }

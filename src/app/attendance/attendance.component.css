@@ -1,0 +1,97 @@
+/* Base Layout */
+.attendance-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full height */
+  }
+  
+  app-topbar {
+    position: sticky; /* Ensures it stays at the top */
+    top: 0;
+    z-index: 1000; /* Ensure it's above other elements */
+    width: 100%;
+  }
+  
+  .main-content {
+    display: flex;
+    flex: 1; /* Take up remaining space */
+    overflow: auto; /* Scrollable if content overflows */
+  }
+  
+  app-sidebar {
+    flex: 0 0 250px; /* Fixed width for sidebar */
+    background-color: #f8f9fa;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    transition: transform 0.3s ease-in-out; /* Smooth open/close animation */
+  }
+  
+  .attendance-container {
+    flex: 1; /* Take up remaining space */
+    padding: 20px;
+  }
+  
+  /* Button Style */
+  .mark-attendance-btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .mark-attendance-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive Design for Mobile */
+  @media (max-width: 768px) {
+    /* Sidebar */
+    app-sidebar {
+      flex: 0 0 200px; /* Reduce width */
+      transform: translateX(-100%); /* Hide by default */
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%; /* Full height */
+      z-index: 1000;
+    }
+  
+    app-sidebar[isOpen] {
+      transform: translateX(0); /* Show sidebar when open */
+    }
+  
+    /* Topbar */
+    app-topbar {
+      padding: 0px 0px;
+    }
+  
+    /* Attendance Container */
+    .attendance-container {
+      padding: 10px; /* Reduce padding for smaller screens */
+    }
+  
+    /* Button */
+    .mark-attendance-btn {
+      width: 100%; /* Full width button */
+      font-size: 14px; /* Slightly smaller font */
+    }
+  }
+  
+  /* For Very Small Devices */
+  @media (max-width: 480px) {
+    app-sidebar {
+      flex: 0 0 150px; /* Further reduce sidebar width */
+    }
+  
+    .attendance-container h1 {
+      font-size: 20px; /* Adjust heading size */
+    }
+  
+    .attendance-container p {
+      font-size: 14px; /* Adjust paragraph size */
+    }
+  }
+  

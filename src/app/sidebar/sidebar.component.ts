@@ -14,7 +14,7 @@ import { Router } from '@angular/router';  // Import Router
 export class SidebarComponent {
   @Input() isOpen: boolean = false;
   @Output() isOpenChange = new EventEmitter<boolean>();
-
+  @Input() employeeCode: string = '';
   constructor(private router: Router) {}  // Inject Router for navigation
 
   // Method to toggle sidebar visibility

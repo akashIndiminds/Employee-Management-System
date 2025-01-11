@@ -1,1 +1,29 @@
-<p>attendance works!</p>
+<!-- Attendance Page -->
+<div class="attendance-page">
+  <!-- TopBar at the top -->
+  <app-topbar
+    [employeeFullName]="employeeDetails?.employee_full_name"
+    (toggleSidebar)="toggleSidebar()"
+  ></app-topbar>
+
+  <!-- Sidebar and Main Content -->
+  <div class="main-content">
+    <app-sidebar [(isOpen)]="isSidebarOpen"></app-sidebar>
+
+    <div class="attendance-container">
+      <h1>Attendance</h1>
+      <p>Mark your attendance by clicking the button below.</p>
+
+      <button
+        pButton
+        type="button"
+        label="Mark Attendance"
+        class="mark-attendance-btn"
+        (click)="markAttendance()"
+      >Mark Entry</button>
+
+      <!-- PrimeNG Toast Component -->
+      <p-toast></p-toast>
+    </div>
+  </div>
+</div>
