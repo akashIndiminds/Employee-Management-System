@@ -1,0 +1,46 @@
+<!-- TopBar: Displayed at the top -->
+<app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
+
+<app-sidebar 
+  [(isOpen)]="isSidebarOpen"
+></app-sidebar>
+
+
+<div class="register-container">
+    <h2 class="form-title">Register New Employee</h2>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <div class="input-group">
+            <label for="FirstName">First Name</label>
+            <input id="FirstName" formControlName="FirstName" type="text" required />
+        </div>
+
+        <div class="input-group">
+            <label for="MiddleName">Middle Name</label>
+            <input id="MiddleName" formControlName="MiddleName" type="text" />
+        </div>
+
+        <div class="input-group">
+            <label for="LastName">Last Name</label>
+            <input id="LastName" formControlName="LastName" type="text" required />
+        </div>
+
+        <div class="input-group">
+            <label for="EmailID">Email</label>
+            <input id="EmailID" formControlName="EmailID" type="email" required />
+        </div>
+
+        <div class="input-group">
+            <label for="PhoneNumber">Phone</label>
+            <input id="PhoneNumber" formControlName="PhoneNumber" type="text" required />
+        </div>
+
+        <div class="input-group">
+            <label for="JoiningDate">Joining Date</label>
+            <input id="JoiningDate" formControlName="JoiningDate" type="date" required />
+        </div>
+
+        <button type="submit" [disabled]="employeeForm.invalid">Register Employee</button>
+    </form>
+
+    <div *ngIf="message" class="message">{{ message }}</div>
+</div>

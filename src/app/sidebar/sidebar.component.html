@@ -1,28 +1,13 @@
-<p-sidebar
-  [(visible)]="isOpen"
-  [style]="{ width: '250px' }"
-  [position]="'left'"
-  [baseZIndex]="1000"
-  (onHide)="isOpenChange.emit(false)"
->
-  <button
-    pButton
-    type="button"
-    icon="pi pi-times"
-    (click)="toggle()"
-    class="close-button"
-  ></button>
+<div class="sidebar" [class.open]="isOpen" (click)="stopSidebarClose($event)">
   <div class="sidebar-content">
-    <!-- Company Logo -->
     <div class="company-logo">
       <img src="./images/fulllogo_nobuffer.png" alt="Indiminds Technology Logo" />
     </div>
-    <!-- Dropdown Menu Section -->
     <div class="menu-section">
       <h3>Daily Task</h3>
       <ul class="submenu">
-        <li (click)="navigateToAttendance()">Attendance</li>  <!-- Trigger method here -->
-        <li>
+        <li (click)="navigateToAttendance()">Attendance</li>
+        <li (click)="toggleDropdown(0)">
           Task List
           <ul class="dropdown">
             <li>View Tasks</li>
@@ -30,7 +15,22 @@
             <li>Edit Task</li>
           </ul>
         </li>
+        <li (click)="navigateToReports()">Reports</li>
+        <li (click)="navigateToAdmin()">Admin</li>
       </ul>
     </div>
+    <div class="bottom-section">
+      <ul class="bottom-menu">
+        <li>
+          <img src="./images/settings-icon.png" alt="Settings" class="icon">
+          <span>Settings</span>
+        </li>
+        <li (click)="logout()">
+          <img src="./images/logout-icon.png" alt="Logout" class="icon">
+          <span>Logout</span>
+        </li>
+      </ul>
+    </div>
+    <button class="close-btn" (click)="toggle()">x</button>
   </div>
-</p-sidebar>
+</div>

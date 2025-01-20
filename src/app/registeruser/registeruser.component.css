@@ -1,0 +1,168 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ecf0f1;
+  font-family: 'Arial', sans-serif;
+  color: #34495e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Container for the registration form */
+.register-container {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+  font-family: 'Arial', sans-serif;
+  margin-top: 60px;
+}
+
+.register-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.form-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.form-title:hover {
+  color: #2980b9;
+}
+
+/* Styling the input fields and labels */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.input-group label:hover {
+  color: #2980b9;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #2980b9;
+  box-shadow: 0 0 8px rgba(41, 128, 185, 0.3);
+}
+
+.input-group input:focus + label {
+  color: #2980b9;
+}
+
+/* Button Styling */
+button {
+  width: 100%;
+  padding: 14px;
+  background-color: #2980b9;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #3498db;
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Message display */
+.message {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #eaf2f8;
+  color: #2980b9;
+  border: 1px solid #2980b9;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 16px;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #28a745;
+}
+
+.message.error {
+  background-color: #f2dede;
+  color: #c0392b;
+  border-color: #c0392b;
+}
+
+/* Show the message after form submission */
+.message.show {
+  opacity: 1;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .register-container {
+      padding: 20px;
+      margin-top: 60px;
+  }
+
+  .form-title {
+      font-size: 24px;
+  }
+
+  .input-group input {
+      padding: 12px;
+      font-size: 14px;
+  }
+
+  button {
+      padding: 12px;
+      font-size: 16px;
+  }
+}

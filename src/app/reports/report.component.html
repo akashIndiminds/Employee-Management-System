@@ -1,0 +1,24 @@
+<app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
+
+<app-sidebar 
+  [(isOpen)]="isSidebarOpen"
+></app-sidebar>
+
+<div class="report-page">
+  
+  <div class="report-header">
+    <h1>Reports</h1>
+    <p>View and manage your reports</p>
+  </div>
+
+  <div class="report-list">
+    <div *ngFor="let report of reports" class="report-card">
+      <div class="report-title">{{ report.title }}</div>
+      <div class="report-date">{{ report.date }}</div>
+      <div class="report-status" [ngClass]="{'completed': report.status === 'Completed', 'in-progress': report.status === 'In Progress'}">
+        {{ report.status }}
+      </div>
+      <button class="view-report-btn">View Report</button>
+    </div>
+  </div>
+</div>

@@ -5,18 +5,25 @@
   align-items: center;
   background-color: #1c2025;
   color: white;
-  padding: 5px 10px;
+  padding: 10px 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  position: fixed; /* Keeps the TopBar at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 /* Company Name */
 .company-name {
-  flex: 1; /* Ensures it takes available space */
-  text-align: center;
-  font-size: 1.9rem; /* Default size for desktop */
+  flex: 1;
+  text-align: left;
+  font-size: 1.8rem;
   font-weight: bold;
-  color: #ffffff; /* Accent color for branding */
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Hamburger Icon */
@@ -27,56 +34,66 @@
   border: none;
   cursor: pointer;
   outline: none;
-  margin-right: 1px; /* Add space between icon and company name */
+  margin-right: 10px;
+  transition: color 0.3s ease;
 }
 
 .hamburger:hover {
-  color: #1abc9c; /* Highlight on hover */
+  color: #1abc9c;
 }
 
 /* Right Section: Profile Logo and Welcome Text */
 .top-bar-right {
   display: flex;
   align-items: center;
-  gap: 10px; /* Space between logo and text */
+  gap: 10px;
+  flex-shrink: 0; /* Prevent shrinking in narrow screens */
+  white-space: nowrap;
 }
 
 /* Profile Logo */
 .profile-logo {
-  width: 40px; /* Adjust size for mobile */
-  height: 40px;
-  border-radius: 50%; /* Circular logo */
-  object-fit: cover; /* Ensure the logo maintains aspect ratio */
-  transition: width 0.3s ease, height 0.3s ease; /* Smooth scaling */
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 /* Welcome Text */
 .welcome-text {
-  font-size: 1rem; /* Default size for desktop */
+  font-size: 1.2rem;
   font-weight: 500;
-  white-space: nowrap; /* Prevent text wrapping */
+  color: #ffffff;
+  text-align: right;
+  margin-right: 40px;
+  /* Allow the text to fully display without truncating */
+  white-space: nowrap;
+  overflow: visible; /* Allow the text to overflow if it doesn't fit */
+  text-overflow: unset; /* Disable ellipsis */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .hamburger {
-    font-size: 20px; /* Smaller icon size */
+    font-size: 20px;
   }
 
   .company-name {
-    font-size: 0.8rem; /* Slightly smaller font */
+    font-size: 1rem;
+    text-align: left; /* Align text to the left for better spacing */
   }
 
   .profile-logo {
-    width: 20px; /* Smaller logo for mobile */
-    height: 20px;
+    width: 25px;
+    height: 25px;
   }
 
   .welcome-text {
-    font-size: 0.8rem; /* Slightly smaller text for mobile */
+    font-size: 0.8rem;
+    margin-right: 25px;
   }
 
   .top-bar {
-    padding: 8px 15px; /* Adjust padding for smaller screens */
+    padding: 8px 10px;
   }
 }

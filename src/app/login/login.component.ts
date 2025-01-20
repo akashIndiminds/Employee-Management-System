@@ -1,5 +1,3 @@
-// src/app/login/login.component.ts
-
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../services/login.service';
@@ -32,23 +30,23 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
       console.log('Submitting Form Data:', formData);
-
+  
       this.loginService.validateLogin(formData).subscribe({
         next: (response) => {
           console.log('Login Response:', response);
           if (response.Authorization) {
-            // Store employee code in AuthService
+            // Decrypt and store the employee code in AuthService
             this.authService.setEmployeeCode(response.EmployeeCode);
-
+  
             // Optionally log here as well
-            console.log('Employee Code set in AuthService:', response.EmployeeCode);
-
-            // Navigate to dashboard after a delay
+            console.log('Decrypted Employee Code stored in AuthService:', this.authService.getEmployeeCode());
+  
+            // Navigate to the dashboard
             setTimeout(() => {
               this.router.navigate(['/dashboard'], {
                 queryParams: {
-                  id: response.EmployeeCode,
-                  name: response.EmployeeName,
+                  id: this.authService.getEmployeeCode(),
+                  name: response.EmployeeName, // Assuming the name is directly returned
                 },
               });
             }, 2000);
@@ -65,4 +63,5 @@ export class LoginComponent {
       alert('Please fill in all required fields.');
     }
   }
+  
 }

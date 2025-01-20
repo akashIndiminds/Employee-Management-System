@@ -31,4 +31,13 @@ export class AuthService {
   logEmployeeCode(): void {
     console.log('Current Employee Code:', this.getEmployeeCode());
   }
+  // Logout method
+  logout(): void {
+    if (this.isLocalStorageAvailable()) {
+      localStorage.removeItem(this.employeeCodeKey);
+      console.log('User logged out and employee code cleared.');
+    } else {
+      console.warn('localStorage is not available. Could not log out.');
+    }
+  }
 }

@@ -42,17 +42,17 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  toggleSidebar(): void {
+  toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
 
- @HostListener('document:mousedown', ['$event'])
+  @HostListener('document:mousedown', ['$event'])
   handleClickOutside(event: Event): void {
-    // Check if the click is on the hamburger button or inside the sidebar
     const target = event.target as HTMLElement;
-    const isSidebarClick = target.closest('.p-sidebar') !== null;
-    const isHamburgerClick = target.closest('.hamburger') !== null;
+    const isSidebarClick = target.closest('.sidebar') !== null; // Check if click is inside the sidebar
+    const isHamburgerClick = target.closest('.hamburger') !== null; // Check if click is on the hamburger button
     
+    // Close the sidebar if clicked outside and it's open
     if (this.isSidebarOpen && !isSidebarClick && !isHamburgerClick) {
       this.isSidebarOpen = false;
     }

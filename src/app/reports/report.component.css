@@ -1,0 +1,195 @@
+/* Container with max-width for centering */
+.report-page {
+    padding: 2rem;
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Responsive padding for smaller screens */
+@media (max-width: 1024px) {
+    .report-page {
+        padding: 1.5rem;
+    }
+}
+
+/* Responsive layout and typography */
+.report-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.report-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive font size for mobile */
+@media (max-width: 768px) {
+    .report-header h2 {
+        font-size: 1.6rem;
+    }
+}
+
+.report-header p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+}
+
+/* Responsive typography for mobile */
+@media (max-width: 768px) {
+    .report-header p {
+        font-size: 1rem;
+    }
+}
+
+/* Responsive grid layout */
+.report-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 100%;
+}
+
+/* Adjust grid columns for different screen sizes */
+@media (max-width: 1024px) {
+    .report-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .report-list {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Individual report cards */
+.report-card {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.report-card:hover {
+    transform: translateY(-5px);
+}
+
+.report-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.report-date {
+    margin-top: 0.5rem;
+    color: #95a5a6;
+    font-size: 0.95rem;
+}
+
+.report-status {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* Status color coding */
+.report-status.completed {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.report-status.in-progress {
+    background-color: #f39c12;
+    color: white;
+}
+
+.report-status.pending {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* View report button */
+.view-report-btn {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: auto;
+    min-width: 120px;
+}
+
+.view-report-btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+/* Make button more touch-friendly on mobile */
+@media (max-width: 768px) {
+    .view-report-btn {
+        padding: 1rem 1.5rem;
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .report-card {
+        padding: 1.25rem;
+    }
+
+    .report-title {
+        font-size: 1rem;
+    }
+
+    .report-date {
+        font-size: 0.9rem;
+    }
+
+    .report-status {
+        font-size: 0.85rem;
+    }
+}
+
+/* Mobile responsive enhancements for better readability */
+@media (max-width: 480px) {
+    .report-page {
+        padding: 50px;
+    }
+
+    .report-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .report-header p {
+        font-size: 0.9rem;
+    }
+
+    .report-card {
+        padding: 1rem;
+    }
+
+    .view-report-btn {
+        font-size: 0.9rem;
+    }
+}

@@ -1,61 +1,112 @@
-/* Center content in the page */
+/* Dashboard container */
 .dashboard-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  margin-top: 60px;
+}
+
+/* Welcome message section */
+.welcome-message {
+  background-color: #ffffff;
+  padding: 30px;
+  margin-bottom: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.welcome-message h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.welcome-message p {
+  font-size: 18px;
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+.welcome-message p strong {
+  font-weight: 600;
+  color: #2980b9;
+}
+
+/* Dashboard content section */
+.dashboard-content {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.dashboard-content h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2980b9;
+  margin-bottom: 20px;
+}
+
+.dashboard-content p {
+  font-size: 18px;
+  color: #34495e;
+  line-height: 1.6;
+}
+
+/* Color Accent for Professional Look */
+.welcome-message h1, .dashboard-content h2 {
+  color: #1abc9c;  /* Teal color for titles */
+}
+
+.welcome-message p strong, .dashboard-content p strong {
+  color: #16a085;  /* Darker Teal for emphasis */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 30px 15px;
+    margin-top: 60px;
+  }
+
+  .welcome-message, .dashboard-content {
     padding: 20px;
-    font-family: Arial, sans-serif;
   }
-  
-  /* Welcome message section */
-  .welcome-message {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
+
   .welcome-message h1 {
-    color: #2575fc;
-    font-size: 36px;
-  }
-  
-  .welcome-message p {
-    font-size: 18px;
-    color: #333;
-  }
-  
-  /* Dashboard content styling */
-  .dashboard-content {
-    text-align: center;
-    background-color: #f5f5f5;
-    padding: 20px;
-    border-radius: 8px;
-    width: 70%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .dashboard-content h2 {
-    color: #2575fc;
     font-size: 28px;
   }
-  
+
+  .welcome-message p {
+    font-size: 16px;
+  }
+
+  .dashboard-content h2 {
+    font-size: 24px;
+  }
+
   .dashboard-content p {
     font-size: 16px;
-    margin-bottom: 20px;
   }
-  
-  .logout-button {
-    background-color: #2575fc;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+  .dashboard-container {
+    padding: 50px 30px;
+    margin-top: 60px;
   }
-  
-  .logout-button:hover {
-    background-color: #1e5dc7;
+
+  .welcome-message, .dashboard-content {
+    padding: 40px;
   }
-  
+}
