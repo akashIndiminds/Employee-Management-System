@@ -1,0 +1,19 @@
+<div class="login-container">
+  <div class="card">
+    <h2>Login</h2>
+    <!-- <img src="./images/login.png" alt="Login Icon" class="login-icon" /> -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="email">Email</label>
+          <input id="email" type="email" pInputText formControlName="email" placeholder="Enter your email" />
+        </div>
+        <div class="p-field">
+          <label for="password">Password</label>
+          <input id="password" type="password" pInputText formControlName="password" placeholder="Enter your password" />
+        </div>
+        <button pButton type="submit" label="Login" class="login-button">SUBMIT</button>
+      </div>
+    </form>
+  </div>
+</div>

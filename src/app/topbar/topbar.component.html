@@ -1,0 +1,19 @@
+<div class="top-bar">
+  <!-- Company Name -->
+  <button class="hamburger" (click)="onToggleSidebar()">&#9776;</button>
+  <div class="company-name">
+    Indiminds Technologies
+  </div>
+
+  <!-- Right Section: Welcome Message -->
+  <div class="top-bar-right">
+    <img
+      src="./images/3293466.png"
+      alt="Profile Logo"
+      class="profile-logo"
+    />
+    <span *ngIf="welcomeMessage" class="welcome-text">
+      {{ welcomeMessage }}
+    </span>
+  </div>
+</div>

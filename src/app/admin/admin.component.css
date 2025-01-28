@@ -1,0 +1,136 @@
+/* General Admin Container Styles */
+.attendance-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  margin-top: 50px; /* Remove margin-top to make sure the page starts from the top */
+}
+
+.main-content {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: row; /* Use row layout for sidebar and main content side by side */
+}
+
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+  background-color: #f4f7fc;
+  min-height: 100vh;
+  align-items: flex-start; /* Align content to the left */
+  align-items: center;  /* Centering the content */
+  margin-top: 50px;
+  flex-grow: 1; /* Ensure content area takes the remaining space */
+  align-items: center; /* Center horizontally */
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 40px;
+  background: #00aaff;
+  color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1000px; /* Limit header width */
+}
+  
+.admin-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.admin-header p {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+  
+  /* Admin Content */
+  .admin-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    width: 100%;
+    max-width: 1200px; /* Limit content width */
+  }
+
+  /* Card Styling */
+  .card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 350px; /* Limit card width */
+  }
+  
+  .card h2 {
+    font-size: 1.6rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+  
+  .card button {
+    background-color: #00aaff;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .card button:hover {
+    background-color: #0088cc;
+    transform: scale(1.05);
+  }
+  
+  /* Button Styling */
+  button {
+    background-color: #00aaff;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #0088cc;
+    transform: scale(1.05);
+  }
+  
+  /* Responsive Design */
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 15px;
+    margin-top: 50px;
+  }
+
+  .admin-header {
+    padding: 20px;
+  }
+
+  .admin-content {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  button {
+    padding: 10px 20px;
+  }
+}
+  

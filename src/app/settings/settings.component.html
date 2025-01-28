@@ -1,0 +1,78 @@
+<app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
+
+<app-sidebar 
+  [(isOpen)]="isSidebarOpen"
+></app-sidebar>
+
+
+<div class="settings-container">
+    <div class="sidebar">
+      <h3>Settings</h3>
+      <ul>
+        <li (click)="selectSetting('profile')" [class.active]="selectedSetting === 'profile'">Profile</li>
+        <li (click)="selectSetting('change-password')" [class.active]="selectedSetting === 'change-password'">Change Password</li>
+        <li (click)="selectSetting('notifications')" [class.active]="selectedSetting === 'notifications'">Notification Settings</li>
+        <li (click)="selectSetting('security')" [class.active]="selectedSetting === 'security'">Security</li>
+      </ul>
+    </div>
+  
+    <div class="settings-content">
+      <div *ngIf="selectedSetting === 'profile'" class="card profile-section">
+          <h2>Profile</h2>
+          <div class="user-details">
+              <p><strong>Employee Code:</strong> {{ userDetails.empcode }}</p>
+              <p><strong>Name:</strong> {{ userDetails.name }}</p>
+              <p><strong>Email:</strong> {{ userDetails.email }}</p>
+              <p><strong>Phone Number:</strong> {{ userDetails.phone }}</p>
+              <p><strong>Joining Date:</strong> {{ userDetails.joiningDate }}</p>
+              <p><strong>Desgination:</strong> {{ userDetails.designation}}</p>
+          </div>
+      </div>
+  
+      <div *ngIf="selectedSetting === 'change-password'" class="card change-password-section">
+          <h2>Change Password</h2>
+          <form (ngSubmit)="updatePassword()">
+              <div class="form-group">
+                  <label for="currentPassword">Current Password</label>
+                  <input type="password" id="currentPassword" [(ngModel)]="passwordDetails.currentPassword" name="currentPassword" required />
+              </div>
+              <div class="form-group">
+                  <label for="newPassword">New Password</label>
+                  <input type="password" id="newPassword" [(ngModel)]="passwordDetails.newPassword" name="newPassword" required />
+              </div>
+              <div class="form-group">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input type="password" id="confirmPassword" [(ngModel)]="passwordDetails.confirmPassword" name="confirmPassword" required />
+              </div>
+              <button type="submit">Update Password</button>
+          </form>
+      </div>
+  
+      <div *ngIf="selectedSetting === 'notifications'" class="card notifications-section">
+          <h2>Notification Settings</h2>
+          <label>
+              <input type="checkbox" [(ngModel)]="notificationSettings.emailNotifications" />
+              Enable Email Notifications
+          </label>
+          <label>
+              <input type="checkbox" [(ngModel)]="notificationSettings.smsNotifications" />
+              Enable SMS Notifications
+          </label>
+      </div>
+  
+      <div *ngIf="selectedSetting === 'security'" class="card security-section">
+          <h2>Security</h2>
+          <p>Enable Two-Factor Authentication (2FA) for enhanced security.</p>
+          <button (click)="toggleTwoFactorAuth()">
+              {{ securitySettings.twoFactorAuthEnabled ? 'Disable 2FA' : 'Enable 2FA' }}
+          </button>
+      </div>
+  </div>
+  </div>
+  
+<!-- Toast Message -->
+<div *ngIf="showToast" class="toast-message" [ngClass]="[toastClass, 'show']">
+    <span class="emoji">{{ toastIcon }}</span> 
+    {{ toastMessage }}
+  </div>
+  

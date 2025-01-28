@@ -1,0 +1,78 @@
+<div class="attendance-page">
+  <!-- TopBar at the top -->
+  <app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
+
+  <!-- Sidebar and Main Content -->
+  <div class="main-content">
+    <!-- Sidebar -->
+    <app-sidebar [(isOpen)]="isSidebarOpen"></app-sidebar>
+
+    <!-- Attendance Container -->
+    <div class="attendance-container">
+      <h1 class="page-title">Attendance</h1>
+      <p class="intro-text">Mark your attendance and stay updated on your working hours.</p>
+
+      <!-- Status and Remarks Section -->
+      <div class="status-selection">
+        <h1>Attendance Status</h1>
+        
+        <!-- Dropdown for selecting attendance status -->
+        <select [(ngModel)]="selectedStatus" class="status-dropdown">
+          <option *ngFor="let option of statusOptions" [value]="option.id">{{ option.status }}</option>
+        </select>
+      
+        <!-- Remarks input -->
+        <div class="remarks-container">
+          <label for="remarks" class="remarks-label">Enter Remarks (Optional)</label>
+          <input
+            id="remarks"
+            type="text"
+            [(ngModel)]="remarks"
+            class="remarks-input"
+            placeholder="Optional: Provide remarks for your status"
+          />
+        </div>
+      </div>
+      
+      <!-- Attendance Actions Section -->
+      <div class="attendance-actions">
+        <!-- Mark Attendance Section -->
+        <div *ngIf="isMarkEntryVisible" class="attendance-action">
+          <h3>Check In Time</h3>
+          <button
+            pButton
+            type="button"
+            label="Mark Entry"
+            class="mark-attendance-btn"
+            [disabled]="attendanceMarked"
+            (click)="markAttendance()"
+          ></button>
+        </div>
+
+        <!-- Mark Exit Section -->
+        <div *ngIf="!isMarkEntryVisible"class="attendance-action">
+          <h3>Check Out Time</h3>
+          <button
+            pButton
+            type="button"
+            label="Mark Exit"
+            class="mark-exit-btn"
+            (click)="markExit()"
+          ></button>
+        </div>
+      </div>
+
+      <!-- Total Working Hours Section -->
+      <div class="working-hours">
+        <h3>Total Working Hours</h3>
+        <p>{{ totalWorkingHours }}</p>
+      </div>
+
+    
+      <!-- PrimeNG Toast for Notifications -->
+      <p-toast styleClass="custom-toast"></p-toast>
+
+    
+    </div>
+  </div>
+</div>

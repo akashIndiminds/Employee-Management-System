@@ -1,0 +1,312 @@
+/* Main Layout */
+.attendance-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  margin-top: 50px; /* Remove margin-top to make sure the page starts from the top */
+}
+
+.main-content {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; /* Ensure the layout is column-based */
+}
+
+/* Adjusting Attendance Container to bring it closer to the top */
+.attendance-container {
+  flex: 1;
+  padding: 1rem; /* Reduced padding to bring content up */
+  max-width: 800px; /* Retaining max-width */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Increased gap to properly space out sections */
+  align-items: center; /* Center content horizontally */
+}
+
+/* Page Title and Intro */
+.page-title {
+  font-size: 2.57rem; /* Adjusted size */
+  color: #2c3e50;
+  margin-bottom: 0.5rem; /* Reduced bottom margin */
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.intro-text {
+  text-align: center;
+  color: #5a6d7e;
+  font-size: 1.6rem; /* Adjusted size */
+  margin-bottom: 1rem; /* Reduced bottom margin */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Status Selection Styling */
+.status-selection {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.status-selection h1 {
+  color: #2c3e50;
+  margin-bottom: 0.75rem;
+  font-size: 1.7rem;
+}
+
+/* Dropdown Styling */
+.status-dropdown {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  color: #2c3e50;
+}
+
+/* Remarks Input Styling */
+.remarks-container {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.remarks-label {
+  display: block;
+  color: #2c3e50;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.remarks-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+.remarks-input:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.remarks-input::placeholder {
+  color: #bdc3c7; /* Placeholder color */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Attendance Actions */
+.attendance-actions {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  width: 100%;
+  max-width: 600px; /* Keep the same max-width as buttons */
+  margin: 0 auto; /* Center the card */
+  margin-bottom: 15px;
+}
+
+.attendance-action {
+  background: white;
+  padding: 1.25rem; /* Reduced from 2rem */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.2s ease;
+  
+}
+
+.attendance-action h3 {
+  color: #2c3e50;
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+}
+
+/* Buttons */
+.mark-attendance-btn,
+.mark-exit-btn {
+  width: 200px;
+  height: 40px;
+  font-size: 14px; /* Ensure buttons do not exceed the width of the card */
+  padding: 0.6rem 1.25rem; /* Adjusted padding */
+  font-size: 0.95rem; /* Reduced from 1.1rem */
+  font-weight: 600;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  margin: 0.5rem 0; /* Added margin to space out the buttons */
+}
+
+.mark-attendance-btn {
+  background: linear-gradient(145deg, #2ecc71, #27ae60);
+  border: none;
+  color: white;
+}
+
+.mark-attendance-btn:hover:not(:disabled) {
+  background: linear-gradient(145deg, #27ae60, #219a52);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(46, 204, 113, 0.2);
+}
+
+.mark-exit-btn {
+  background: linear-gradient(145deg, #e74c3c, #c0392b);
+  border: none;
+  color: white;
+}
+
+.mark-exit-btn:hover:not(:disabled) { /* Correct hover selector for mark-exit-btn */
+  background: linear-gradient(145deg, #c0392b, #a72820);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(153, 0, 0, 0.2);
+}
+
+
+/* Working Hours Section */
+.working-hours {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  width: 100%;
+  max-width: 600px; /* Keep the same max-width as buttons */
+  margin: 0 auto; /* Center the card */
+}
+
+
+.working-hours h3 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.working-hours p {
+  font-size: 1.75rem; /* Reduced from 2rem */
+  color: #3498db;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Hover Effects */
+.attendance-action:hover,
+.status-selection:hover,
+.working-hours:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modern Input Focus States */
+.status-selection input:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .attendance-container {
+    padding: 0.5rem;
+  }
+
+  .attendance-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .page-title {
+    font-size: 1.75rem;
+  }
+
+  .mark-attendance-btn,
+  .mark-exit-btn {
+    width: 100%;
+  }
+  .status-selection {
+    padding: 1rem;
+  }
+
+  .status-dropdown,
+  .remarks-input {
+    width: 100%;
+  }
+  .intro-text{
+    font-size: 1.1rem;
+  }
+  
+}
+
+
+
+
+
+
+/* Toast Container */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+
+/* Toast Message */
+/* Custom Toast Success Styling */
+.custom-toast-success .p-toast-message-content {
+  background-color: #d4edda; /* Light green */
+  color: #155724; /* Dark green text */
+  border: 1px solid #c3e6cb; /* Border color */
+  border-radius: 5px;
+}
+
+.custom-toast-success .p-toast-icon {
+  color: #155724; /* Match icon color with text */
+}
+
+
+.attendance-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+}

@@ -1,0 +1,86 @@
+
+  <!-- TopBar: Displayed at the top -->
+<app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
+
+<app-sidebar [(isOpen)]="isSidebarOpen"></app-sidebar>
+
+<div class="attendance-container">
+    <h1>Set Employee Attendance Status</h1>
+  
+    <form (ngSubmit)="submitAttendance()">
+      <div class="form-group">
+        <label for="employeeCode">Employee Code:</label>
+        <select
+          id="employeeCode"
+          [(ngModel)]="attendanceData.empcode"
+          name="employeeCode"
+          required
+          (change)="onEmployeeCodeChange(attendanceData.empcode)"
+        >
+          <option value="" disabled>Select an employee</option>
+          <option *ngFor="let emp of employeeCodes" [value]="emp.Value">
+            {{ emp.Text }} <!-- Display full text (name + code) -->
+          </option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="date">Date:</label>
+        <input
+          type="date"
+          id="date"
+          [(ngModel)]="attendanceData.date"
+          name="date"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="checkInTime">Check-In Time:</label>
+        <input
+          type="time"
+          id="checkInTime"
+          [(ngModel)]="attendanceData.checkInTime"
+          name="checkInTime"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="checkOutTime">Check-Out Time:</label>
+        <input
+          type="time"
+          id="checkOutTime"
+          [(ngModel)]="attendanceData.checkOutTime"
+          name="checkOutTime"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="status">Attendance Status:</label>
+        <select
+          id="status"
+          [(ngModel)]="attendanceData.status"
+          name="status"
+          required
+        >
+          <option value="1">Present</option>
+          <option value="2">Absent</option>
+          <option value="3">Half-day</option>
+          <option value="4">Leave</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="remarks">Remarks:</label>
+        <textarea
+          id="remarks"
+          [(ngModel)]="attendanceData.remarks"
+          name="remarks"
+        ></textarea>
+      </div>
+  
+      <button type="submit" class="submit-btn">Update Attendance</button>
+    </form>
+    
+  </div>
+  

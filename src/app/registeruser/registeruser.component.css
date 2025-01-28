@@ -1,0 +1,185 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fcfcfc;
+  font-family: 'Arial', sans-serif;
+  color: #34495e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Container for the registration form */
+.register-container {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+  margin-top: 76px;
+}
+
+.register-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Title and Subtitle */
+.form-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.form-title:hover {
+  color: #026aca;
+}
+
+.form-subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: #f54f02;
+  margin-bottom: 30px;
+}
+
+/* Styling the input fields and labels */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.input-group label:hover {
+  color: #2980b9;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #2980b9;
+  box-shadow: 0 0 8px rgba(41, 128, 185, 0.3);
+}
+
+/* Button Styling */
+button {
+  width: 100%;
+  padding: 14px;
+  background-color: #2980b9;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #3498db;
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Message display */
+.message {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #000000;
+  color: #2f7eb3;
+  border: 1px solid #2980b9;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 16px;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.message.success {
+  background-color: #00c02d;
+  color: #ffffff;
+  border-color: #28a745;
+}
+
+.message.error {
+  background-color: #f2dede;
+  color: #c0392b;
+  border-color: #c0392b;
+}
+
+/* Show the message after form submission */
+.message.show {
+  opacity: 1;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .register-container {
+      padding: 20px;
+      margin-top: 60px;
+  }
+
+  .form-title {
+      font-size: 24px;
+  }
+
+  .form-subtitle {
+      font-size: 14px;
+  }
+
+  .input-group input {
+      padding: 12px;
+      font-size: 14px;
+  }
+
+  button {
+      padding: 12px;
+      font-size: 16px;
+  }
+}
+/* Add error styles */
+.input-group.error input {
+  border-color: red;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
