@@ -1,112 +1,296 @@
-/* Dashboard container */
+/* Main Dashboard Container */
 .dashboard-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 40px 20px;
-  margin-top: 60px;
+  margin-top: 30px;
+  min-height: calc(100vh - 60px);
+  background-color: #f8f9fa;
 }
 
-/* Welcome message section */
+/* Welcome Message Section */
 .welcome-message {
   background-color: #ffffff;
-  padding: 30px;
-  margin-bottom: 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 35px;
+  margin-bottom: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(41, 128, 185, 0.1);
   width: 100%;
   max-width: 800px;
-  text-align: center;
 }
 
-.welcome-message h1 {
+.dashboard-title {
   font-size: 32px;
   font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 15px;
+  color: #2980b9;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
 }
 
-.welcome-message p {
-  font-size: 18px;
+.dashboard-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #2980b9, #3498db);
+  border-radius: 2px;
+}
+
+.employee-details {
+  padding: 15px 0;
+}
+
+.employee-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 18px; /* Increased font size */
   color: #34495e;
-  margin-bottom: 10px;
 }
 
-.welcome-message p strong {
+.info-label {
   font-weight: 600;
   color: #2980b9;
 }
 
-/* Dashboard content section */
+.loading-message {
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+/* Enhanced Attendance Section */
+.attendance-section {
+  background-color: #ffffff;
+  padding: 35px;
+  margin-bottom: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(41, 128, 185, 0.1);
+  width: 100%;
+  max-width: 800px;
+  transition: all 0.3s ease;
+}
+
+.attendance-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(41, 128, 185, 0.15);
+}
+
+.attendance-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #2980b9;
+  margin-bottom: 30px;
+  position: relative;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.attendance-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #2980b9, #3498db);
+  border-radius: 2px;
+}
+
+.attendance-details {
+  padding: 10px 0;
+}
+
+.attendance-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.attendance-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #34495e;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.attendance-time,
+.attendance-status,
+.attendance-remarks {
+  font-size: 16px;
+  color: #2c3e50;
+  padding: 12px 16px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #2980b9;
+}
+
+/* Dashboard Content Section */
 .dashboard-content {
   background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(41, 128, 185, 0.1);
   width: 100%;
   max-width: 800px;
   text-align: center;
 }
-
-.dashboard-content h2 {
+.overview-title {
   font-size: 28px;
   font-weight: 700;
   color: #2980b9;
   margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 15px;
 }
 
-.dashboard-content p {
+.overview-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #2980b9, #3498db);
+  border-radius: 2px;
+}
+
+.overview-description {
   font-size: 18px;
   color: #34495e;
   line-height: 1.6;
 }
 
-/* Color Accent for Professional Look */
-.welcome-message h1, .dashboard-content h2 {
-  color: #1abc9c;  /* Teal color for titles */
+/* Status Indicators */
+.attendance-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.welcome-message p strong, .dashboard-content p strong {
-  color: #16a085;  /* Darker Teal for emphasis */
+.attendance-status::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #27ae60;
 }
 
-/* Mobile responsiveness */
+.attendance-status.late::before {
+  background-color: #f1c40f;
+}
+
+.attendance-status.absent::before {
+  background-color: #e74c3c;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.welcome-message,
+.attendance-section,
+.dashboard-content {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .dashboard-container {
-    padding: 30px 15px;
-    margin-top: 60px;
+    padding: 20px 15px;
+    margin-bottom: 30px;
   }
 
-  .welcome-message, .dashboard-content {
-    padding: 20px;
+  .welcome-message,
+  .attendance-section,
+  .dashboard-content {
+    padding: 25px;
   }
 
-  .welcome-message h1 {
-    font-size: 28px;
+  .dashboard-title {
+    font-size: 26px;
   }
 
-  .welcome-message p {
-    font-size: 16px;
+  .attendance-row {
+    flex-direction: column;
+    gap: 15px;
   }
 
-  .dashboard-content h2 {
+  .attendance-info {
+    width: 100%;
+  }
+
+  .info-label {
+    font-size: 13px;
+  }
+
+  .attendance-time,
+  .attendance-status,
+  .attendance-remarks {
+    font-size: 15px;
+    padding: 10px 12px;
+  }
+
+  .overview-title {
     font-size: 24px;
   }
 
-  .dashboard-content p {
+  .overview-description {
     font-size: 16px;
+  }
+  .app-sidebar{
+    width: 80%;
   }
 }
 
-/* Large Desktop */
+/* Large Desktop Optimization */
 @media (min-width: 1200px) {
   .dashboard-container {
     padding: 50px 30px;
-    margin-top: 60px;
+  }
+  .employee-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 21px; /* Increased font size */
+    color: #34495e;
+  }
+  .info-label {
+    font-weight: 600;
+    color: #2980b9;
+    font-size: 20px; /* Adjusted font size for the label */
   }
 
-  .welcome-message, .dashboard-content {
+  .welcome-message,
+  .attendance-section,
+  .dashboard-content {
     padding: 40px;
   }
 }

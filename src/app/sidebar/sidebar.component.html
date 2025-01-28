@@ -1,30 +1,25 @@
 <div class="sidebar" [class.open]="isOpen" (click)="stopSidebarClose($event)">
   <div class="sidebar-content">
-    <div class="company-logo">
+    <div class="company-logo" (click)="navigateToDashboard()">
       <img src="./images/fulllogo_nobuffer.png" alt="Indiminds Technology Logo" />
     </div>
+    
     <div class="menu-section">
       <h3>Daily Task</h3>
       <ul class="submenu">
         <li (click)="navigateToAttendance()">Attendance</li>
-        <li (click)="toggleDropdown(0)">
-          Task List
-          <ul class="dropdown">
-            <li>View Tasks</li>
-            <li>Add Task</li>
-            <li>Edit Task</li>
-          </ul>
-        </li>
         <li (click)="navigateToReports()">Reports</li>
         <li (click)="navigateToAdmin()">Admin</li>
       </ul>
     </div>
     <div class="bottom-section">
       <ul class="bottom-menu">
-        <li>
+        
+        <li (click)="navigateToSettings()">
           <img src="./images/settings-icon.png" alt="Settings" class="icon">
           <span>Settings</span>
         </li>
+        
         <li (click)="logout()">
           <img src="./images/logout-icon.png" alt="Logout" class="icon">
           <span>Logout</span>

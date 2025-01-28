@@ -5,11 +5,12 @@ import { Service } from '../services/service.registeremployee';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { TopBarComponent } from '../topbar/topbar.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component'; // Adjust the path accordingly
 
 @Component({
   selector: 'app-registeruser',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, SidebarComponent, TopBarComponent], // Add CommonModule here
+  imports: [ReactiveFormsModule, CommonModule, SidebarComponent, TopBarComponent, CustomDialogComponent], // Add CommonModule here
   templateUrl: './registeruser.component.html',
   styleUrls: ['./registeruser.component.css']
 })
@@ -17,10 +18,14 @@ export class RegisterUserComponent implements OnInit {
   employeeForm: FormGroup; // Declare FormGroup
   message: string = ''; // Initialize with an empty string
   isSidebarOpen: boolean = false;
+  showDialog: boolean = false;  // To control dialog visibility
+  dialogMessage: string = '';   // Message for the dialog
+  dialogTimeout: number = 5000; // Timeout for dialog (5 seconds)
+  dialogTitle: string = '';    // Title for the dialog
 
   constructor(private fb: FormBuilder, private service: Service) {
     // Initialize employeeForm in the constructor
-    this.employeeForm = this.fb.group({
+      this.employeeForm = this.fb.group({
       FirstName: ['', Validators.required],
       MiddleName: [''],
       LastName: ['', Validators.required],
@@ -37,19 +42,23 @@ export class RegisterUserComponent implements OnInit {
   onSubmit(): void {
     if (this.employeeForm.valid) {
       const formData = this.employeeForm.value;
-      
+      const joiningDate = new Date(formData.JoiningDate);
+      formData.JoiningDate = joiningDate.toISOString().split('T')[0];
+
       this.service.registerEmployee(formData).subscribe(
-        (response: any) => { // Explicitly define response type as 'any'
-          this.message = response.message;
-          this.employeeForm.reset(); // Reset the form on success
+        (response: any) => {
+          this.dialogMessage = response.message;
+          this.dialogTitle = 'Success';
+          this.showDialog = true;
         },
-        (error: HttpErrorResponse) => { // Explicitly define error type as 'HttpErrorResponse'
-          this.message = `Error: ${error.status} - ${error.message}`;
+        (error: HttpErrorResponse) => {
+          this.dialogMessage = `Error: ${error.status} - ${error.message}`;
+          this.dialogTitle = 'Error';
+          this.showDialog = true;
         }
       );
     }
   }
-
 
   toggleSidebar(): void {
       this.isSidebarOpen = !this.isSidebarOpen;

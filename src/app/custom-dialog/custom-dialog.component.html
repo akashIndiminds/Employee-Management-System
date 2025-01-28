@@ -1,0 +1,13 @@
+<div *ngIf="isDialogVisible" class="dialog-container">
+    <!-- Progress bar at the top -->
+    <div class="progress-bar">
+      <div [style.width.%]="progress" class="progress-fill"></div>
+    </div>
+  
+    <!-- Dialog content -->
+    <div class="dialog-content">
+      <h2>{{ title }}</h2>
+      <p>{{ message }}</p>
+    </div>
+  </div>
+  

@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AesEncryptionService } from '../Utility/RequestInterceptor';
+import { baseUrl } from '../app.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  private apiUrl = 'http://127.0.0.1:8000/login';
+  private apiUrl = `${baseUrl}/login`;
 
   constructor(
     private http: HttpClient, 
@@ -18,8 +19,8 @@ export class LoginService {
     const encryptedEmail = this.encryptionService.encrypt(data.email);
     const encryptedPassword = this.encryptionService.encrypt(data.password);
 
-    console.log('Encrypted Email:', encryptedEmail);
-    console.log('Encrypted Password:', encryptedPassword);
+   // console.log('Encrypted Email:', encryptedEmail);
+    //console.log('Encrypted Password:', encryptedPassword);
 
     // Create URL-safe encoded versions of the encrypted values
     const encodedEmail = encodeURIComponent(encryptedEmail);

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AesEncryptionService } from '../Utility/RequestInterceptor'; // Import the encryption service
 
 @Injectable({
   providedIn: 'root',
@@ -6,38 +7,42 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private employeeCodeKey = 'employeeCode';
 
+  constructor(private encryptionService: AesEncryptionService) {} // Inject the encryption service
+
   private isLocalStorageAvailable(): boolean {
     return typeof localStorage !== 'undefined';
   }
 
   setEmployeeCode(code: string): void {
     if (this.isLocalStorageAvailable()) {
-      localStorage.setItem(this.employeeCodeKey, code);
+      const encryptedCode = this.encryptionService.encrypt(code); // Encrypt the employee code
+       console.log("Auth file",encryptedCode)
+      localStorage.setItem(this.employeeCodeKey, encryptedCode); // Store the encrypted code
     } else {
-      console.warn('localStorage is not available. Employee code will not persist.');
+    //  console.warn('localStorage is not available. Employee code will not persist.');
     }
-    this.logEmployeeCode();
+    
   }
 
-  getEmployeeCode(): string | null {
+  getEmployeeCode(): string {
     if (this.isLocalStorageAvailable()) {
-      return localStorage.getItem(this.employeeCodeKey);
+      const encryptedCode = localStorage.getItem(this.employeeCodeKey); // Retrieve encrypted code
+      if (encryptedCode) {
+        return this.encryptionService.decrypt(encryptedCode); // Decrypt the code and return it
+      }
+      return 'NA';
     } else {
-      console.warn('localStorage is not available. Returning null for employee code.');
-      return null;
+     // console.warn('localStorage is not available. Returning null for employee code.');
+      return 'NA';
     }
   }
 
-  logEmployeeCode(): void {
-    console.log('Current Employee Code:', this.getEmployeeCode());
-  }
-  // Logout method
   logout(): void {
     if (this.isLocalStorageAvailable()) {
-      localStorage.removeItem(this.employeeCodeKey);
-      console.log('User logged out and employee code cleared.');
+      localStorage.removeItem(this.employeeCodeKey); // Clear the encrypted employee code
+     // console.log('User logged out and employee code cleared.');
     } else {
-      console.warn('localStorage is not available. Could not log out.');
+     // console.warn('localStorage is not available. Could not log out.');
     }
   }
 }

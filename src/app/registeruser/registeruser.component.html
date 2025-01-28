@@ -1,46 +1,71 @@
 <!-- TopBar: Displayed at the top -->
 <app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
 
-<app-sidebar 
-  [(isOpen)]="isSidebarOpen"
-></app-sidebar>
+<app-sidebar [(isOpen)]="isSidebarOpen"></app-sidebar>
 
-
+<!-- Main Registration Container -->
 <div class="register-container">
+  <div class="register-header">
     <h2 class="form-title">Register New Employee</h2>
-    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-        <div class="input-group">
-            <label for="FirstName">First Name</label>
-            <input id="FirstName" formControlName="FirstName" type="text" required />
-        </div>
+    <p class="form-subtitle">Please fill in the details below to register a new employee.</p>
+  </div>
 
-        <div class="input-group">
-            <label for="MiddleName">Middle Name</label>
-            <input id="MiddleName" formControlName="MiddleName" type="text" />
-        </div>
+  <!-- Registration Form -->
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="register-form">
+    <div class="input-group" [class.error]="employeeForm.get('FirstName')?.invalid && (employeeForm.get('FirstName')?.dirty || employeeForm.get('FirstName')?.touched)">
+      <label for="FirstName">First Name</label>
+      <input id="FirstName" formControlName="FirstName" type="text" placeholder="Enter First Name" required />
+      <div *ngIf="employeeForm.get('FirstName')?.invalid && (employeeForm.get('FirstName')?.dirty || employeeForm.get('FirstName')?.touched)" class="error-message">
+        First name is required.
+      </div>
+    </div>
 
-        <div class="input-group">
-            <label for="LastName">Last Name</label>
-            <input id="LastName" formControlName="LastName" type="text" required />
-        </div>
+    <div class="input-group" [class.error]="employeeForm.get('MiddleName')?.invalid && (employeeForm.get('MiddleName')?.dirty || employeeForm.get('MiddleName')?.touched)">
+      <label for="MiddleName">Middle Name</label>
+      <input id="MiddleName" formControlName="MiddleName" type="text" placeholder="Enter Middle Name (optional)" />
+    </div>
 
-        <div class="input-group">
-            <label for="EmailID">Email</label>
-            <input id="EmailID" formControlName="EmailID" type="email" required />
-        </div>
+    <div class="input-group" [class.error]="employeeForm.get('LastName')?.invalid && (employeeForm.get('LastName')?.dirty || employeeForm.get('LastName')?.touched)">
+      <label for="LastName">Last Name</label>
+      <input id="LastName" formControlName="LastName" type="text" placeholder="Enter Last Name" required />
+      <div *ngIf="employeeForm.get('LastName')?.invalid && (employeeForm.get('LastName')?.dirty || employeeForm.get('LastName')?.touched)" class="error-message">
+        Last name is required.
+      </div>
+    </div>
 
-        <div class="input-group">
-            <label for="PhoneNumber">Phone</label>
-            <input id="PhoneNumber" formControlName="PhoneNumber" type="text" required />
-        </div>
+    <div class="input-group" [class.error]="employeeForm.get('EmailID')?.invalid && (employeeForm.get('EmailID')?.dirty || employeeForm.get('EmailID')?.touched)">
+      <label for="EmailID">Email</label>
+      <input id="EmailID" formControlName="EmailID" type="email" placeholder="Enter Email Address" required />
+      <div *ngIf="employeeForm.get('EmailID')?.invalid && (employeeForm.get('EmailID')?.dirty || employeeForm.get('EmailID')?.touched)" class="error-message">
+        Please enter a valid email.
+      </div>
+    </div>
 
-        <div class="input-group">
-            <label for="JoiningDate">Joining Date</label>
-            <input id="JoiningDate" formControlName="JoiningDate" type="date" required />
-        </div>
+    <div class="input-group" [class.error]="employeeForm.get('PhoneNumber')?.invalid && (employeeForm.get('PhoneNumber')?.dirty || employeeForm.get('PhoneNumber')?.touched)">
+      <label for="PhoneNumber">Phone</label>
+      <input id="PhoneNumber" formControlName="PhoneNumber" type="text" placeholder="Enter Phone Number" required />
+      <div *ngIf="employeeForm.get('PhoneNumber')?.invalid && (employeeForm.get('PhoneNumber')?.dirty || employeeForm.get('PhoneNumber')?.touched)" class="error-message">
+        Phone number is required.
+      </div>
+    </div>
 
-        <button type="submit" [disabled]="employeeForm.invalid">Register Employee</button>
-    </form>
+    <div class="input-group" [class.error]="employeeForm.get('JoiningDate')?.invalid && (employeeForm.get('JoiningDate')?.dirty || employeeForm.get('JoiningDate')?.touched)">
+      <label for="JoiningDate">Joining Date</label>
+      <input id="JoiningDate" formControlName="JoiningDate" type="date" required />
+      <div *ngIf="employeeForm.get('JoiningDate')?.invalid && (employeeForm.get('JoiningDate')?.dirty || employeeForm.get('JoiningDate')?.touched)" class="error-message">
+        Joining date is required.
+      </div>
+    </div>
 
-    <div *ngIf="message" class="message">{{ message }}</div>
-</div>
+    <button type="submit" class="submit-btn">Register Employee</button>
+  </form>
+
+  <!-- Success or Error Message -->
+  <div *ngIf="showDialog">
+    <app-custom-dialog 
+      [message]="dialogMessage" 
+      [timeout]="dialogTimeout"
+      [title]="dialogTitle">
+    </app-custom-dialog>
+  </div>
+</div> <!-- Closing div for "register-container" -->

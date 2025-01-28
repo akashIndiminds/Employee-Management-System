@@ -1,30 +1,36 @@
-<!-- TopBar: Displayed at the top -->
-<app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
+<div class="admin-dashboard">
+  <!-- TopBar at the top -->
+  <app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
 
-<app-sidebar 
-  [(isOpen)]="isSidebarOpen"
-></app-sidebar>
+  <!-- Sidebar and Main Content -->
+  <div class="main-content">
+    <!-- Sidebar -->
+    <app-sidebar [(isOpen)]="isSidebarOpen"></app-sidebar>
 
-<div class="admin-container">
-    <div class="admin-header">
-      <h1>Admin Dashboard</h1>
-      <p>Welcome to the Admin Panel</p>
+    <!-- Admin Dashboard Container -->
+    <div class="admin-container">
+      <div class="admin-header">
+        <h1>Admin Dashboard</h1>
+        <p>Welcome to the Admin Panel</p>
+      </div>
+
+      <!-- Admin Dashboard Cards -->
+      <div class="admin-content">
+        <div class="card">
+          <h2>Register a New User</h2>
+          <button pButton icon="pi pi-user-plus" label="Register" (click)="navigateToUsers()">Register</button>
+        </div>
+
+        <div class="card">
+          <h2>Set Employee Attendance</h2>
+          <button pButton icon="pi pi-cog" label="Set Attendance Status" (click)="navigateToSetAttendance()">Set Attendance Status</button>
+        </div>
+
+        <div class="card">
+          <h2>Reports</h2>
+          <button pButton icon="pi pi-chart-line" label="View Reports" (click)="navigateToReports()">Reports</button>
+        </div>
+      </div>
     </div>
-  
-    <div class="admin-content">
-      <div class="card">
-        <h2>Register a New User</h2>
-        <button pButton icon="pi pi-user-plus" label="Register" (click)="navigateToUsers()">Register</button>
-      </div>
-  
-      <div class="card">
-        <h2>System Settings</h2>
-        <button pButton icon="pi pi-cog" label="Settings" (click)="navigateToSettings()">Settings</button>
-      </div>
-  
-      <div class="card">
-        <h2>Reports</h2>
-        <button pButton icon="pi pi-chart-line" label="View Reports" (click)="navigateToReports()">Reports</button>
-      </div>
-    </div>
+  </div>
 </div>

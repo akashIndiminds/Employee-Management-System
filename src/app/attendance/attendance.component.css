@@ -131,11 +131,15 @@
 
 /* Attendance Actions */
 .attendance-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+  background: white;
+  padding: 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  text-align: center;
   width: 100%;
-  max-width: 600px; /* Added max-width */
+  max-width: 600px; /* Keep the same max-width as buttons */
+  margin: 0 auto; /* Center the card */
+  margin-bottom: 15px;
 }
 
 .attendance-action {
@@ -145,19 +149,21 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   text-align: center;
   transition: transform 0.2s ease;
+  
 }
 
 .attendance-action h3 {
   color: #2c3e50;
   margin-bottom: 0.75rem;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 /* Buttons */
 .mark-attendance-btn,
 .mark-exit-btn {
-  width: 100%; /* Set to 100% to match the width of the card */
-  max-width: 600px; /* Ensure buttons do not exceed the width of the card */
+  width: 200px;
+  height: 40px;
+  font-size: 14px; /* Ensure buttons do not exceed the width of the card */
   padding: 0.6rem 1.25rem; /* Adjusted padding */
   font-size: 0.95rem; /* Reduced from 1.1rem */
   font-weight: 600;
@@ -184,11 +190,12 @@
   color: white;
 }
 
-.mark-exit-btn:hover {
-  background: linear-gradient(145deg, #c0392b, #a93226);
+.mark-exit-btn:hover:not(:disabled) { /* Correct hover selector for mark-exit-btn */
+  background: linear-gradient(145deg, #c0392b, #a72820);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(231, 76, 60, 0.2);
+  box-shadow: 0 4px 8px rgba(153, 0, 0, 0.2);
 }
+
 
 /* Working Hours Section */
 .working-hours {
@@ -268,21 +275,38 @@
 
 
 
-.success-toast {
-  background-color: #dff0d8 !important; /* Light green */
-  color: #3c763d !important;          /* Dark green text */
+/* Toast Container */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
 }
+
+
+/* Toast Message */
+/* Custom Toast Success Styling */
+.custom-toast-success .p-toast-message-content {
+  background-color: #d4edda; /* Light green */
+  color: #155724; /* Dark green text */
+  border: 1px solid #c3e6cb; /* Border color */
+  border-radius: 5px;
+}
+
+.custom-toast-success .p-toast-icon {
+  color: #155724; /* Match icon color with text */
+}
+
 
 .attendance-actions {
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 10px;
-}
-
-.mark-attendance-btn,
-.mark-exit-btn {
-  width: 200px;
-  height: 40px;
-  font-size: 14px;
 }

@@ -2,7 +2,6 @@ import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { TopBarComponent } from '../topbar/topbar.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -23,8 +22,8 @@ export class AdminComponent {
   }
 
   // Navigate to Settings page
-  navigateToSettings() {
-    this.router.navigate(['/settings']);  // Replace '/settings' with the path to your settings page
+  navigateToSetAttendance() {
+    this.router.navigate(['/setattendance']);  // Replace '/settings' with the path to your settings page
   }
 
   // Navigate to Reports page
@@ -40,14 +39,12 @@ export class AdminComponent {
   @HostListener('document:mousedown', ['$event'])
   handleClickOutside(event: Event): void {
     const target = event.target as HTMLElement;
-    const isSidebarClick = target.closest('.sidebar') !== null; // Check if click is inside the sidebar
-    const isHamburgerClick = target.closest('.hamburger') !== null; // Check if click is on the hamburger button
-    
-    // Close the sidebar if clicked outside and it's open
+    const isSidebarClick = target.closest('.sidebar') !== null;
+    const isHamburgerClick = target.closest('.hamburger') !== null;
+
     if (this.isSidebarOpen && !isSidebarClick && !isHamburgerClick) {
       this.isSidebarOpen = false;
     }
   }
-
   
 }

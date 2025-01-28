@@ -1,0 +1,101 @@
+.dialog-container {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    background-color: white;
+    border-radius: 15px;  /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for 3D effect */
+    padding: 20px;
+    z-index: 9999;
+    overflow: hidden; /* Hide overflowing parts of the progress bar */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: slideIn 0.5s ease-out; /* Animation for dialog appearing */
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-50%) translateY(-100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Circular Progress Bar (around the dialog) */
+  .dialog-container::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(
+      var(--progress-color) var(--progress), 
+      #f3f3f3 calc(var(--progress) + 1%)
+    );
+    border-radius: 50%;
+    z-index: -1;
+    transition: background 0.1s ease-in-out;
+  }
+  
+  /* Dialog Content (Message) */
+  .dialog-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;  /* Ensure content stays on top of progress bar */
+  }
+  
+  .dialog-content h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+    font-weight: 600;
+    padding-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .dialog-content p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.4;
+  }
+  
+  /* Progress Fill Styling (Optional) */
+  .progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    z-index: 2;
+    animation: progressAnimation 0.1s ease-out;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background-color: #4caf50;
+    border-radius: 5px;
+    width: 0%; /* Dynamically updated via style */
+  }
+  
+  /* Animations for Progress Bar */
+  @keyframes progressAnimation {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
