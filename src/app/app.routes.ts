@@ -7,6 +7,7 @@ import { RegisterUserComponent} from './registeruser/registeruser.component';
 import { ReportComponent } from './reports/report.component';
 import { AdminAttendanceComponent} from './setattendance/admin-attendance.component';
 import {SettingsComponent} from './settings/settings.component';
+import { MonthlyReportComponent } from './monthlyreports/MonthlyReportComponent';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,6 +18,7 @@ export const routes: Routes = [
   {path: 'registeruser', component:RegisterUserComponent},
   {path: 'report', component:ReportComponent},
   {path: 'setattendance', component: AdminAttendanceComponent},
-  {path: 'settings', component: SettingsComponent }
+  {path: 'settings', component: SettingsComponent },
+  {path: 'monthlyreports', component: MonthlyReportComponent}
 
 ];

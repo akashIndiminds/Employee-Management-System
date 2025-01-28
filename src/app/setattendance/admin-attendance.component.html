@@ -32,6 +32,7 @@
           [(ngModel)]="attendanceData.date"
           name="date"
           required
+          (change)="onDateChange()" 
         />
       </div>
   
@@ -67,6 +68,8 @@
           <option value="2">Absent</option>
           <option value="3">Half-day</option>
           <option value="4">Leave</option>
+          <option value="5">WFH</option>
+          
         </select>
       </div>
   

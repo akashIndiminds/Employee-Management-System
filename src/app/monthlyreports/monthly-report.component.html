@@ -1,0 +1,58 @@
+<div class="report-container">
+    <h2>Monthly Attendance Report</h2>
+    
+    <!-- Month and Year Selection -->
+    <div class="controls">
+      <label>Select Month</label>
+      <select [(ngModel)]="selectedMonth">
+        <option *ngFor="let month of months" [value]="month.value">
+          {{ month.name }}
+        </option>
+      </select>
+      
+      <label>Select Year</label>
+      <select [(ngModel)]="selectedYear">
+        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+      </select>
+      
+      <!-- Button to fetch report, disabled until month and year are selected -->
+      <button [disabled]="isFetchButtonDisabled()" (click)="fetchMonthlyAttendanceReport()">Fetch Report</button>
+    </div>
+  
+    <!-- Loading Spinner -->
+    <div *ngIf="isLoading" class="loading">
+      Loading attendance data...
+    </div>
+  
+    <!-- Error Message -->
+    <div *ngIf="error" class="error">
+      {{ error }}
+    </div>
+  
+    <!-- Attendance Table -->
+    <div *ngIf="attendanceData.length > 0" class="attendance-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Employee Name</th>
+            <th>Employee Code</th>
+            <!-- Dynamically generate columns for each date -->
+            <th *ngFor="let date of getDates()">{{ date }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of attendanceData">
+            <td>{{ record.employee_name }}</td>
+            <td>{{ record.employee_code }}</td>
+            <!-- Dynamically generate cells for each date -->
+            <td *ngFor="let date of getDates()">{{ record[date] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Download Button -->
+    <div *ngIf="attendanceData.length > 0">
+      <button (click)="downloadExcel()">Download Full Report (Excel)</button>
+    </div>
+</div>

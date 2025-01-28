@@ -28,10 +28,13 @@
       <div class="control-group">
         <label>Select Employee</label>
         <select [(ngModel)]="selectedEmployee" (ngModelChange)="onSelectionChange()">
-         <option value="all">All Employees</option>
-      <!-- Iterate over employeeCodes fetched from the backend -->
-      <option *ngFor="let employee of employeeCodes" [value]="employee.Value">{{ employee.Text }}</option>
+          <!-- Show employee codes with names -->
+          <option *ngFor="let employee of employeeCodes" [value]="employee.Value">
+            {{ employee.Text }} ({{ employee.Value }})
+          </option>
         </select>
+        
+        
       </div>
 
       <div class="control-group">
@@ -80,7 +83,8 @@
           <div class="attendance-info" *ngIf="day.attendance">
             <div class="hours">{{ day.attendance.hours_worked.toFixed(2) }} hrs</div>
             <div class="time">
-              {{ day.attendance.check_in.slice(0, 5) }} - {{ day.attendance.check_out.slice(0, 5) }}
+              {{ day.attendance.check_in.slice(0, 5) }} - 
+              {{ day.attendance.check_out ? day.attendance.check_out.slice(0, 5) : '0.00' }}
             </div>
             <div class="status" [ngClass]="day.attendance.arrival_status.toLowerCase().replace(' ', '-')">
               {{ day.attendance.arrival_status }}
@@ -101,4 +105,5 @@
 
     <button class="back-btn" (click)="backToReports()">Back to Reports</button>
   </div>
+
 </div>

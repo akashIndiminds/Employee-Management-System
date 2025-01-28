@@ -118,8 +118,8 @@
 }
 
 .report-status.in-progress {
-    background-color: #f39c12;
-    color: white;
+  background-color: #f39c12; /* Orange color for 'In Progress' status */
+  color: white;
 }
 
 .report-status.pending {

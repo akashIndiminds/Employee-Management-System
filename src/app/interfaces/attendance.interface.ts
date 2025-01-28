@@ -2,7 +2,7 @@
 export interface AttendanceDetail {
   date: string;
   check_in: string;
-  check_out: string;
+  check_out: string | null;
   hours_worked: number;
   status: string;
   remarks: string;
