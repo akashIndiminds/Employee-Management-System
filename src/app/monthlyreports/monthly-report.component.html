@@ -1,3 +1,6 @@
+<app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
+
+<app-sidebar [(isOpen)]="isSidebarOpen"></app-sidebar>
 <div class="report-container">
     <h2>Monthly Attendance Report</h2>
     
@@ -38,6 +41,8 @@
             <th>Employee Code</th>
             <!-- Dynamically generate columns for each date -->
             <th *ngFor="let date of getDates()">{{ date }}</th>
+            <th>Total Working Days</th>
+          <th>Total Time Worked (hrs)</th>
           </tr>
         </thead>
         <tbody>
@@ -46,6 +51,8 @@
             <td>{{ record.employee_code }}</td>
             <!-- Dynamically generate cells for each date -->
             <td *ngFor="let date of getDates()">{{ record[date] }}</td>
+            <td>{{ record.TotalWorkingDays }}</td>
+            <td>{{ record.TotalTimeWorked }}</td>
           </tr>
         </tbody>
       </table>

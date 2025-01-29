@@ -1,16 +1,16 @@
 {
-  "name": "my-angular-app",
+  "name": "CoreConnect",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:my-angular-app": "node dist/my-angular-app/server/server.mjs",
+    "serve:ssr:CoreConnect": "node dist/CoreConnect/server/server.mjs",
     "dev:ssr": "ng serve --watch",
-    "serve:ssr": "node dist/my-angular-app/server/main.mjs",
+    "serve:ssr": "node dist/CoreConnect/server/main.mjs",
     "build": "ng build",
-    "build:ssr": "ng build && ng run my-angular-app:server"
+    "build:ssr": "ng build && ng run CoreConnect:server"
   },
   "private": true,
   "dependencies": {

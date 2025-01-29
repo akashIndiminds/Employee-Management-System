@@ -86,10 +86,14 @@
               {{ day.attendance.check_in.slice(0, 5) }} - 
               {{ day.attendance.check_out ? day.attendance.check_out.slice(0, 5) : '0.00' }}
             </div>
-            <div class="status" [ngClass]="day.attendance.arrival_status.toLowerCase().replace(' ', '-')">
+            <div 
+              class="status" 
+              *ngIf="day.attendance.arrival_status.toLowerCase() !== 'on time'" 
+              [ngClass]="day.attendance.arrival_status.toLowerCase().replace(' ', '-')">
               {{ day.attendance.arrival_status }}
             </div>
           </div>
+          
           <div class="absent-marker" *ngIf="day.isCurrentMonth && !day.attendance">
             Absent
           </div>

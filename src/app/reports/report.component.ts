@@ -105,7 +105,7 @@ export class ReportComponent implements OnInit, OnDestroy {
     const loggedInEmployeeCode = this.authService.getEmployeeCode();
     const adminCodes = ['ITL-KOL-1017', 'ITL-KOL-1007', 'ITL-KOL-1001'];
     const isAdmin = adminCodes.includes(loggedInEmployeeCode);
-
+  
     this.http.get<{ Text: string; Value: string }[]>(url).subscribe({
       next: (data) => {
         if (!isAdmin) {
@@ -113,16 +113,20 @@ export class ReportComponent implements OnInit, OnDestroy {
           this.employeeCodes = data.filter(employee => employee.Value === loggedInEmployeeCode);
           this.selectedEmployee = loggedInEmployeeCode;
         } else {
-          // For admins, show all codes
-          this.employeeCodes = data;
-
+          // For admins, show all codes sorted alphabetically
+          this.employeeCodes = data.sort((a, b) => {
+            const nameA = a.Text.split(" - ")[0].trim().toUpperCase();
+            const nameB = b.Text.split(" - ")[0].trim().toUpperCase();
+            return nameA.localeCompare(nameB);
+          });
+  
           // If no employee is selected or selection is invalid, default to admin's own code
           if (!this.selectedEmployee || !data.some(emp => emp.Value === this.selectedEmployee)) {
             this.selectedEmployee = loggedInEmployeeCode;
             localStorage.setItem('selectedEmployee', loggedInEmployeeCode);
           }
         }
-
+  
         // Fetch attendance data for the selected employee
         if (this.selectedEmployee) {
           this.fetchAttendanceData();
@@ -133,7 +137,7 @@ export class ReportComponent implements OnInit, OnDestroy {
       },
     });
   }
-
+  
   checkUserRole(): void {
     const loggedInEmployeeCode = this.authService.getEmployeeCode();
     const adminCodes = ['ITL-KOL-1017', 'ITL-KOL-1007', 'ITL-KOL-1001'];

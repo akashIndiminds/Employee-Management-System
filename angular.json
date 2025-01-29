@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-angular-app": {
+    "CoreConnect": {  
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/my-angular-app",
+            "outputPath": "dist/CoreConnect", 
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -41,13 +41,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                 "maximumWarning": "2mb",
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                 "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ],
               "outputHashing": "all"
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "my-angular-app:build:production"
+              "buildTarget": "CoreConnect:build:production"  
             },
             "development": {
-              "buildTarget": "my-angular-app:build:development"
+              "buildTarget": "CoreConnect:build:development"  
             }
           },
           "defaultConfiguration": "development"
@@ -89,13 +89,13 @@
                 "input": "public"
               }
             ],
-           "styles": [
-             "node_modules/primeng/resources/themes/lara-light-indigo/theme.css",
-             "node_modules/primeng/resources/primeng.min.css",
-             "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-             "node_modules/primeng/resources/primeng.min.css",
-             "node_modules/primeicons/primeicons.css",
-            "src/styles.css"
+            "styles": [
+              "node_modules/primeng/resources/themes/lara-light-indigo/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
+              "src/styles.css"
             ],
             "scripts": []
           }

@@ -1,152 +1,205 @@
-/* General Styling for Report Container */
 .report-container {
-    padding: 20px;
-    margin: 0 auto;
-    max-width: 1200px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+  max-width: 95%;
+  margin: 20px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Header */
+h2 {
+  text-align: center;
+  color: #333;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+/* Controls Section */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.controls label {
+  font-weight: 600;
+  font-size: 16px;
+  color: #555;
+}
+
+.controls select,
+.controls button {
+  padding: 12px 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.controls select {
+  background: #f7f7f7;
+  transition: background 0.3s ease-in-out;
+}
+
+.controls select:hover {
+  background: #e1e1e1;
+}
+
+.controls button {
+  background: #007bff;
+  color: white;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+  border-radius: 6px;
+}
+
+.controls button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.controls button:hover:not(:disabled) {
+  background: #0056b3;
+  transform: translateY(-3px);
+}
+
+.controls button:active {
+  transform: scale(0.98);
+}
+
+/* Loading & Error */
+.loading {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff9800;
+  padding: 12px;
+}
+
+.error {
+  color: #d9534f;
+  text-align: center;
+  font-weight: 600;
+  padding: 12px;
+}
+
+/* Attendance Table */
+.attendance-table {
+  overflow-x: auto;
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto; /* Auto adjust column width */
+}
+
+th,
+td {
+  padding: 16px;
+  text-align: left;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+th {
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+tbody tr:hover {
+  background: rgba(0, 123, 255, 0.1);
+  transition: background 0.3s ease-in-out;
+}
+
+td {
+  background: #fff;
+  color: #333;
+}
+
+/* Total Working Days and Time */
+td:last-child {
+  font-weight: bold;
+  color: #007bff;
+}
+
+
+/* Download Button */
+/* Download Button */
+.download-buttons {
+  text-align: center;
+  align-items: end;  
+}
+
+button {
+  display: inline-block;
+  width: 220px;
+  padding: 14px;
+  background: #28a745;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 10px;
   
-  h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  /* Styling for Controls (Month & Year Selection) */
+}
+
+button:hover {
+  background: #008d1f;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 20px;
+    flex-direction: column;
+    gap: 12px;
   }
-  
-  .controls label {
-    font-size: 1rem;
-    color: #333;
+
+  .button-group {
+    flex-direction: column;
+    gap: 12px;
   }
-  
-  .controls select {
-    padding: 8px 12px;
-    font-size: 1rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    outline: none;
-    transition: border-color 0.3s;
-  }
-  
-  .controls select:focus {
-    border-color: #007bff;
-  }
-  
-  button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
-  /* Loading Spinner */
-  .loading {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #007bff;
-    margin-top: 20px;
-  }
-  
-  /* Error Message */
-  .error {
-    text-align: center;
-    font-size: 1rem;
-    color: red;
-    margin-top: 20px;
-  }
-  
-  /* Table Styling */
-  .attendance-table {
-    width: 100%;
-    margin-top: 20px;
-    overflow-x: auto;
-  }
-  
+
   table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
+    font-size: 12px;
   }
-  
+
   th, td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
+    padding: 10px;
   }
-  
-  th {
-    background-color: #007bff;
-    color: white;
-    font-size: 1.1rem;
-  }
-  
-  td {
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Download Button */
+
   button {
     width: 100%;
-    padding: 12px;
-    background-color: #28a745;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
+    font-size: 14px;
   }
-  
-  button:hover {
-    background-color: #218838;
-  }
-  
-  /* Mobile Responsiveness */
-  @media screen and (max-width: 768px) {
-    .controls {
-      flex-direction: column;
-      gap: 10px;
-    }
-  
-    .controls select, button {
-      width: 100%;
-    }
-  
-    .attendance-table {
-      overflow-x: scroll;
-    }
-  }
-  
+}

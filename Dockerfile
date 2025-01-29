@@ -33,4 +33,4 @@ COPY --from=build /app/dist /app/dist
 EXPOSE 4000
 
 # Start the server
-CMD ["npm", "run", "serve:ssr:my-angular-app"]
+CMD ["npm", "run", "serve:ssr:CoreConnect"]

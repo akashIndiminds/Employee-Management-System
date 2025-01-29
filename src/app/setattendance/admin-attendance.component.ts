@@ -48,13 +48,18 @@ export class AdminAttendanceComponent implements OnInit {
     const url = `${baseUrl}/EmployeeCodes`;
     this.http.get<{ Text: string; Value: string }[]>(url).subscribe(
       (data: { Text: string; Value: string }[]) => {
-        this.employeeCodes = data;
+        this.employeeCodes = data.sort((a, b) => {
+          const nameA = a.Text.split(" - ")[0].trim().toUpperCase(); // Extract name and normalize
+          const nameB = b.Text.split(" - ")[0].trim().toUpperCase();
+          return nameA.localeCompare(nameB); // Sort alphabetically
+        });
       },
       (error: any) => {
-        console.error('Error fetching employee codes:', error);
+        console.error("Error fetching employee codes:", error);
       }
     );
   }
+  
 
   submitAttendance(): void {
     let { empcode, date, checkInTime, checkOutTime, status, remarks } = this.attendanceData;
