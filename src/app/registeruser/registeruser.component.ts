@@ -59,6 +59,7 @@ export class RegisterUserComponent implements OnInit {
       );
     }
   }
+  
 
   toggleSidebar(): void {
       this.isSidebarOpen = !this.isSidebarOpen;

@@ -23,7 +23,7 @@ export class MonthlyALLEmployeeService {
       .set('Year', year.toString());
 
     // Log the request params for debugging
-    console.log("Request Params:", params);
+//    console.log("Request Params:", params);
 
     // Send POST request with query parameters
     return this.http.post<any>(this.apiUrl, null, { params });

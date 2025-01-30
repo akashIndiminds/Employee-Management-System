@@ -44,13 +44,13 @@ export class DashboardComponent implements OnInit {
 
      // Do not toggle the sidebar automatically
      this.isSidebarOpen = false;
-     console.log('Sidebar state on init:', this.isSidebarOpen); 
+    // console.log('Sidebar state on init:', this.isSidebarOpen); 
   }
 
   fetchEmployeeDetails(employeeCode: string): void {
     this.employeeService.getEmployeeDetails(employeeCode).subscribe({
       next: (data) => {
-        console.log('Employee Details:', data);
+       // console.log('Employee Details:', data);
         this.employeeDetails = data;
       },
       error: (error) => {
@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
-    console.log('Sidebar toggled. Current state:', this.isSidebarOpen);
+    //console.log('Sidebar toggled. Current state:', this.isSidebarOpen);
   }
   
 
@@ -102,12 +102,12 @@ export class DashboardComponent implements OnInit {
     const isSidebarClick = target.closest('.sidebar') !== null; // Check if click is inside the sidebar
     const isHamburgerClick = target.closest('.hamburger') !== null; // Check if click is on the hamburger button
   
-    console.log('Sidebar outside click detected', { isSidebarClick, isHamburgerClick, isSidebarOpen: this.isSidebarOpen });
+   // console.log('Sidebar outside click detected', { isSidebarClick, isHamburgerClick, isSidebarOpen: this.isSidebarOpen });
   
     // Close the sidebar if clicked outside and it's open
     if (this.isSidebarOpen && !isSidebarClick && !isHamburgerClick) {
       this.isSidebarOpen = false;
-      console.log('Sidebar closed due to outside click');
+    // console.log('Sidebar closed due to outside click');
     }
   }
   

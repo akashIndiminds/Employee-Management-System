@@ -132,7 +132,7 @@ export class AttendanceComponent implements OnInit {
     private EmployeeAttendanceService: EmployeeAttendanceService
   ) { this.employeeCode = this.authService.getEmployeeCode();
     if (!this.employeeCode) {
-      console.warn('Employee code not found in localStorage. Please re-login.');
+     // console.warn('Employee code not found in localStorage. Please re-login.');
     }
   }
 
@@ -145,14 +145,14 @@ export class AttendanceComponent implements OnInit {
         this.fetchLastAttendanceDetails(); // Fetch details only after initializing employeeCode
       }
     } else {
-      console.error('Employee code not found. Please log in again.');
+    //  console.error('Employee code not found. Please log in again.');
     }
   }
   
 
   private fetchLastAttendanceDetails(): void {
     if (!this.employeeCode) {
-      console.error('Employee code is missing.');
+      //console.error('Employee code is missing.');
       return;
     }
   
@@ -168,15 +168,15 @@ export class AttendanceComponent implements OnInit {
               (option) => option.status === attendanceDetails.status
             )?.id || 1;
             this.remarks = attendanceDetails.remarks;
-            console.log('Last Attendance:', attendanceDetails);
+         //   console.log('Last Attendance:', attendanceDetails);
           },
           error: (error) => {
-            console.error('Error fetching last attendance details:', error);
+         //   console.error('Error fetching last attendance details:', error);
           },
         });
       },
       error: (error) => {
-        console.error('Error checking attendance status:', error);
+      //  console.error('Error checking attendance status:', error);
       },
     });
   }
@@ -184,17 +184,18 @@ export class AttendanceComponent implements OnInit {
 
   private initializeComponent(): void {
     this.employeeCode = this.authService.getEmployeeCode();
-
-    if (!this.employeeCode || this.employeeCode === 'NA') {
+    if (!this.employeeCode) {
       this.showMessage('warn', 'Warning', 'Employee code not found. Please log in again.');
       return;
     }
-
+  
+    // Force check attendance status with date consideration
     this.attendanceMarked = this.attendanceService.hasMarkedAttendance();
     this.isMarkEntryVisible = !this.attendanceMarked;
     this.setStatusOptions();
     this.updateCheckInStatus();
   }
+
   private updateCheckInStatus(): void {
     this.checkInService.checkAttendanceStatus(this.employeeCode).subscribe({
       next: (response) => {
@@ -210,7 +211,7 @@ export class AttendanceComponent implements OnInit {
         }
       },
       error: (error) => {
-        console.error('Error checking attendance status:', error);
+       // console.error('Error checking attendance status:', error);
         this.showMessage('error', 'Error', 'Failed to fetch attendance status.');
       }
     });
@@ -291,7 +292,7 @@ export class AttendanceComponent implements OnInit {
   
 
   private handleError(error: any): void {
-    console.error('Error marking attendance:', error);
+   // console.error('Error marking attendance:', error);
     this.showMessage('error', 'Error', 'Failed to mark attendance. Please try again.');
   }
 

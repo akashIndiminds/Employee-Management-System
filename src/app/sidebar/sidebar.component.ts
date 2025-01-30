@@ -41,14 +41,14 @@ export class SidebarComponent {
     const employeeCode = this.authService.getEmployeeCode() ?? ''; // Fetch employee code
   
     if (!employeeCode) {
-      console.error('Employee code is null or empty.');
+      //console.error('Employee code is null or empty.');
       return;
     }
   
     this.checkInService.checkAttendanceStatus(employeeCode).subscribe({
       next: (response) => {
-        console.log('Check-in Status:', response.CheckInStatus);
-        console.log('Working Hours:', response.Duration);
+      //  console.log('Check-in Status:', response.CheckInStatus);
+       // console.log('Working Hours:', response.Duration);
   
         // Store the data in the CheckInService
         this.checkInService.storeCheckInStatus(
@@ -62,7 +62,7 @@ export class SidebarComponent {
         });
       },
       error: (error) => {
-        console.error('Error checking attendance status:', error);
+        //console.error('Error checking attendance status:', error);
       },
     });
   }
@@ -88,7 +88,7 @@ export class SidebarComponent {
       this.router.navigate(['/admin']);
       this.toggle();  // Close sidebar after navigation
     } else {
-      console.warn('Access denied. You are not authorized to view the Admin page.');
+    //  console.warn('Access denied. You are not authorized to view the Admin page.');
     }
   }
   navigateToReports() {

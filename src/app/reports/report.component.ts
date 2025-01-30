@@ -133,7 +133,7 @@ export class ReportComponent implements OnInit, OnDestroy {
         }
       },
       error: (error) => {
-        console.error('Error fetching employee codes:', error);
+      //  console.error('Error fetching employee codes:', error);
       },
     });
   }
@@ -180,7 +180,7 @@ export class ReportComponent implements OnInit, OnDestroy {
           this.isLoading = false; // Hide loading spinner/message
         },
         error: (error) => {
-          console.error('Error fetching attendance data:', error);
+      //    console.error('Error fetching attendance data:', error);
           this.error = 'Failed to fetch attendance data. Please try again.'; // Display error message
           this.isLoading = false; // Hide loading spinner/message
         },

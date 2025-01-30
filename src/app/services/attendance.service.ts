@@ -13,7 +13,7 @@ export class AttendanceService {
   private markEntryUrl = `${baseUrl}/MarkEntry`; // Constructed using baseUrl
   private markExitUrl = `${baseUrl}/MarkExit`; // Constructed using baseUrl
   private attendanceStatusKey = 'attendanceMarked'; // Key to store attendance status in localStorage
-
+  private lastAttendanceDateKey = 'lastAttendanceDate';
   private attendanceStatusSubject = new BehaviorSubject<boolean>(false);
   public attendanceStatus$ = this.attendanceStatusSubject.asObservable();
 
@@ -32,21 +32,30 @@ export class AttendanceService {
     return isPlatformBrowser(this.platformId);
   }
 
+  
   // Check if attendance has already been marked
   hasMarkedAttendance(): boolean {
     try {
-      if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      if (this.isBrowser()) {
+        const storedDate = localStorage.getItem(this.lastAttendanceDateKey);
+        const currentDate = this.getLocalDateString();
+
+        // Reset if the date has changed
+        if (storedDate !== currentDate) {
+          localStorage.removeItem(this.attendanceStatusKey);
+          localStorage.removeItem(this.lastAttendanceDateKey);
+          this.attendanceStatusSubject.next(false);
+          return false;
+        }
+
         return localStorage.getItem(this.attendanceStatusKey) === 'true';
-      } else {
-        console.warn('localStorage is not available. Returning default value.');
-        return false; // Default fallback value
       }
+      return false;
     } catch (error) {
-      console.error('LocalStorage access failed:', error);
-      return false; // Handle gracefully if access fails
+     // console.error('LocalStorage access failed:', error);
+      return false;
     }
   }
-  
 
   markAttendance(employeeCode: string): Observable<any> {
     const encryptedEmployeeCode = this.encryptionService.encrypt(employeeCode);
@@ -71,7 +80,10 @@ export class AttendanceService {
   }
 
   handleAttendanceMarked(): void {
+    const currentDate = this.getLocalDateString();
     localStorage.setItem(this.attendanceStatusKey, 'true');
+    localStorage.setItem(this.lastAttendanceDateKey, currentDate);
+    this.attendanceStatusSubject.next(true);
   }
 
   resetAttendanceStatus(): void {
@@ -80,6 +92,14 @@ export class AttendanceService {
     }
   }
 
+  private getLocalDateString(): string {
+    const date = new Date();
+    return [
+      date.getFullYear(),
+      String(date.getMonth() + 1).padStart(2, '0'),
+      String(date.getDate()).padStart(2, '0')
+    ].join('-');
+  }
   // Mark exit method
   markExit(employeeCode: string, status: number, remarks: string): Observable<any> {
     console.log('Marking exit for:', employeeCode);

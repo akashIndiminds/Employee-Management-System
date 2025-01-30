@@ -8,12 +8,13 @@ import { baseUrl } from '../app.config';
   providedIn: 'root',
 })
 export class CheckInService {
-  private apiUrl = `${baseUrl}/CheckInStatus`; // Replace with your backend API URL
-  private checkInStatusKey = 'checkInStatus'; // Key for storing check-in status
-  private durationKey = 'duration'; // Key for storing duration
+  private apiUrl = `${baseUrl}/CheckInStatus`;
+  private checkInStatusKey = 'checkInStatus';
+  private durationKey = 'duration';
+  private lastCheckInDateKey = 'lastCheckInDate';
 
-  public checkInStatus: string = ''; // Public property to store check-in status
-  public duration: string = ''; // Public property to store duration
+  public checkInStatus: string = '';
+  public duration: string = '';
 
   constructor(
     private http: HttpClient,
@@ -24,80 +25,71 @@ export class CheckInService {
     return typeof localStorage !== 'undefined';
   }
 
-  // Store the check-in status and duration in localStorage
+  // Helper to get local date in YYYY-MM-DD format
+  private getLocalDateString(): string {
+    const date = new Date();
+    return [
+      date.getFullYear(),
+      String(date.getMonth() + 1).padStart(2, '0'),
+      String(date.getDate()).padStart(2, '0')
+    ].join('-');
+  }
+
+  private resetCheckinDataIfNeeded(): void {
+    if (this.isLocalStorageAvailable()) {
+      const storedDate = localStorage.getItem(this.lastCheckInDateKey);
+      const currentDate = this.getLocalDateString(); // Use local date
+
+      if (storedDate !== currentDate) {
+       // console.log('Date changed. Resetting check-in data.');
+        this.resetAttendanceStatus();
+      }
+    }
+  }
+
   storeCheckInStatus(status: string, duration: string): void {
     if (this.isLocalStorageAvailable()) {
-      const encryptedStatus = this.encryptionService.encrypt(status); // Encrypt the status
-      const encryptedDuration = this.encryptionService.encrypt(duration); // Encrypt the duration
+      const encryptedStatus = this.encryptionService.encrypt(status);
+      const encryptedDuration = this.encryptionService.encrypt(duration);
+      const currentDate = this.getLocalDateString(); // Use local date
 
-      localStorage.setItem(this.checkInStatusKey, encryptedStatus); // Store encrypted status
-      localStorage.setItem(this.durationKey, encryptedDuration); // Store encrypted duration
-    } else {
-      console.warn('localStorage is not available. Check-in status and duration will not persist.');
+      localStorage.setItem(this.checkInStatusKey, encryptedStatus);
+      localStorage.setItem(this.durationKey, encryptedDuration);
+      localStorage.setItem(this.lastCheckInDateKey, currentDate);
     }
   }
 
-  // Retrieve the check-in status from localStorage
+  // Rest of the methods remain unchanged
   getCheckInStatus(): string {
+    this.resetCheckinDataIfNeeded();
     if (this.isLocalStorageAvailable()) {
       const encryptedStatus = localStorage.getItem(this.checkInStatusKey);
-      if (encryptedStatus) {
-        return this.encryptionService.decrypt(encryptedStatus); // Decrypt and return the status
-      }
-      return ''; // Return empty string if not found
-    } else {
-      console.warn('localStorage is not available. Returning empty string for check-in status.');
-      return '';
+      return encryptedStatus ? this.encryptionService.decrypt(encryptedStatus) : '';
     }
+    return '';
   }
 
-  // Retrieve the duration from localStorage
   getDuration(): string {
+    this.resetCheckinDataIfNeeded();
     if (this.isLocalStorageAvailable()) {
       const encryptedDuration = localStorage.getItem(this.durationKey);
-      if (encryptedDuration) {
-        return this.encryptionService.decrypt(encryptedDuration); // Decrypt and return the duration
-      }
-      return ''; // Return empty string if not found
-    } else {
-      console.warn('localStorage is not available. Returning empty string for duration.');
-      return '';
+      return encryptedDuration ? this.encryptionService.decrypt(encryptedDuration) : '';
     }
+    return '';
   }
 
-  // Reset the check-in status and duration
   resetAttendanceStatus(): void {
     if (this.isLocalStorageAvailable()) {
-      localStorage.removeItem(this.checkInStatusKey); // Remove encrypted status
-      localStorage.removeItem(this.durationKey); // Remove encrypted duration
-    } else {
-      console.warn('localStorage is not available. Could not reset attendance status.');
+      localStorage.removeItem(this.checkInStatusKey);
+      localStorage.removeItem(this.durationKey);
+      localStorage.removeItem(this.lastCheckInDateKey);
     }
   }
 
-  // Check attendance status for a given employee code
   checkAttendanceStatus(employeeCode: string): Observable<any> {
-    console.log('Checking attendance for Employee Code:', employeeCode);
-
-    // Encrypt the employee code
     const encryptedEmployeeCode = this.encryptionService.encrypt(employeeCode);
-    console.log('Encrypted Employee Code in Check in:', encryptedEmployeeCode);
-
-    // Create URL-safe encoded version of the encrypted value
     const encodedEmployeeCode = encodeURIComponent(encryptedEmployeeCode);
-
-    // Build the query string manually to preserve encryption
-    const queryString = `?EmployeeCode=${encodedEmployeeCode}`;
-    
-    // Construct the full URL
-    const fullUrl = `${this.apiUrl}${queryString}`;
-
-    // Use HttpHeaders to set content type if needed
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-
-    // Send the POST request with the full URL
-    return this.http.post(fullUrl, null, { headers });
+    const fullUrl = `${this.apiUrl}?EmployeeCode=${encodedEmployeeCode}`;
+    return this.http.post(fullUrl, null, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 }

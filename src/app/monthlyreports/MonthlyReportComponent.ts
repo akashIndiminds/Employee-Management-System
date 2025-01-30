@@ -45,14 +45,15 @@ export class MonthlyReportComponent implements OnInit {
     this.monthlyEmployeeService.getMonthlyAttendanceReport(this.selectedMonth, this.selectedYear)
       .subscribe(
         (data: any) => {
-          console.log("API Response:", data); // Log the response for debugging
+          
+          //console.log("API Response:", data); // Log the response for debugging
   
           // Transform the nested data into a wide-table format
           this.attendanceData = this.transformToWideTable(data.attendance_data);
           this.isLoading = false;
         },
         (err) => {
-          console.error("API Error:", err); // Log the error
+        //  console.error("API Error:", err); // Log the error
           this.error = 'Error fetching attendance data';
           this.isLoading = false;
         }

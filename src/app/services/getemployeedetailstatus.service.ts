@@ -7,7 +7,8 @@ import { baseUrl } from '../app.config';
 
 export interface AttendanceResponse {
   success: boolean;
-  data: {
+  message?: string;
+  data?: {
     empcode: string;
     date: string;
     checkintime: string;
@@ -15,6 +16,7 @@ export interface AttendanceResponse {
     status: number;
     remarks: string;
   };
+  Employee_Details?: any; // Add this if you need to handle employee details
 }
 
 export interface AttendanceViewModel {
@@ -36,51 +38,40 @@ export class EmployeeAttendanceService {
   ) {}
 
   getAttendanceStatus(employeeCode: string): Observable<AttendanceViewModel> {
-    // Encrypt the employee code
     const encryptedEmpCode = this.encryptionService.encrypt(employeeCode);
-  
-    // URL encode the encrypted employee code
     const encodedEmpCode = encodeURIComponent(encryptedEmpCode);
-  
-    // Send the POST request with the encrypted Empcode as a query parameter
+
     return this.http.post<AttendanceResponse>(`${this.apiUrl}?Empcode=${encodedEmpCode}`, {}).pipe(
       map((response: AttendanceResponse) => {
-        console.log('Full API Response:', response);
-  
-        if (!response.success) {
-          console.error('API returned success: false');
-          throw new Error('API returned unsuccessful response');
-        }
-      
-        if (!response.data) {
-          console.error('No data in the response');
-          throw new Error('No attendance data found');
+      //  console.log('Full API Response:', response);
+
+        if (!response.success || !response.data) {
+          // Handle business logic error without throwing
+       //  console.warn(response.message || 'No attendance data found');
+          return this.getDefaultAttendance();
         }
 
-
-        if (response.success && response.data) {
-          return {
-            checkInTime: this.formatTime(response.data.checkintime),
-            checkOutTime: this.formatTime(response.data.checkouttime),
-            status: this.getStatusText(response.data.status),
-            remarks: response.data.remarks || ''
-          };
-        } else {
-          throw new Error('Invalid response format');
-        }
+        return {
+          checkInTime: this.formatTime(response.data.checkintime),
+          checkOutTime: this.formatTime(response.data.checkouttime),
+          status: this.getStatusText(response.data.status),
+          remarks: response.data.remarks || ''
+        };
       }),
       catchError(error => {
-        console.error('Attendance API Error:', error);
-        return of({
-          checkInTime: 'Not Marked',
-          checkOutTime: 'Not Marked',
-          status: 'Pending',
-          remarks: ''
-        });
+        //console.error('HTTP Error:', error);
+        return of(this.getDefaultAttendance());
       })
     );
   }
-
+  private getDefaultAttendance(): AttendanceViewModel {
+    return {
+      checkInTime: 'Not Marked',
+      checkOutTime: 'Not Marked',
+      status: 'Pending',
+      remarks: ''
+    };
+  }
   private formatTime(time: string | null): string {
     if (!time) return 'Not Marked';
     try {

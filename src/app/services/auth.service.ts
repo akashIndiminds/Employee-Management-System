@@ -16,7 +16,7 @@ export class AuthService {
   setEmployeeCode(code: string): void {
     if (this.isLocalStorageAvailable()) {
       const encryptedCode = this.encryptionService.encrypt(code); // Encrypt the employee code
-       console.log("Auth file",encryptedCode)
+     //  console.log("Auth file",encryptedCode)
       localStorage.setItem(this.employeeCodeKey, encryptedCode); // Store the encrypted code
     } else {
     //  console.warn('localStorage is not available. Employee code will not persist.');

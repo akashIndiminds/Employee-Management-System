@@ -29,12 +29,14 @@ export class TopBarComponent implements OnInit {
           this.welcomeMessage = response.message; // Extract the welcome message
         },
         (error) => {
-          console.error('Error fetching employee details:', error);
+        //  console.error('Error fetching employee details:', error);
           this.welcomeMessage = 'Welcome, Guest!'; // Fallback message
         }
       );
     } else {
-      console.warn('No employee code found.');
+    
+    
+    //  console.warn('No employee code found.');
       this.welcomeMessage = 'Welcome, Guest!'; // Fallback for missing employee code
     }
   }

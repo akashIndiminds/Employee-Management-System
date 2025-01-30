@@ -19,10 +19,10 @@ export class Service {
     const queryParams = `?FirstName=${FirstName}&MiddleName=${MiddleName}&LastName=${LastName}&EmailID=${EmailID}&PhoneNumber=${PhoneNumber}&JoiningDate=${JoiningDate}`;
     
     // Log the constructed URL
-    console.log("Request URL:", `${this.apiUrl}${queryParams}`);
+   // console.log("Request URL:", `${this.apiUrl}${queryParams}`);
 
     // Log the body being sent in the POST request
-    console.log("Request Body:", {});
+   // console.log("Request Body:", {});
 
     // Make the GET request with the query params (you may want to use GET instead of POST if it's a query)
     return this.http.post<any>(`${this.apiUrl}${queryParams}`, {});
