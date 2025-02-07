@@ -8,6 +8,9 @@ import { ReportComponent } from './reports/report.component';
 import { AdminAttendanceComponent} from './setattendance/admin-attendance.component';
 import {SettingsComponent} from './settings/settings.component';
 import { MonthlyReportComponent } from './monthlyreports/MonthlyReportComponent';
+import { LeaveComponent } from './leave/leave.component';
+import { PayslipComponent } from './payslip/payslip.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,6 +22,7 @@ export const routes: Routes = [
   {path: 'report', component:ReportComponent},
   {path: 'setattendance', component: AdminAttendanceComponent},
   {path: 'settings', component: SettingsComponent },
-  {path: 'monthlyreports', component: MonthlyReportComponent}
-
+  {path: 'monthlyreports', component: MonthlyReportComponent},
+  { path: 'leave', component: LeaveComponent },
+  { path: 'payslip', component: PayslipComponent }
 ];

@@ -5,6 +5,7 @@ import { TopBarComponent } from '../topbar/topbar.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { AuthService } from '../services/auth.service'; // Import AuthService
 import {EmployeeAttendanceService} from '../services/getemployeedetailstatus.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +28,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private authService: AuthService, // Inject AuthService
-    private attendanceService: EmployeeAttendanceService
+    private attendanceService: EmployeeAttendanceService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -111,4 +113,24 @@ export class DashboardComponent implements OnInit {
     }
   }
   
+
+// Method to handle "Apply for Leave" button click
+applyForLeave(): void {
+ 
+  this.router.navigate(['/leave']);
+}
+
+// Method to handle "Mark Attendance" button click
+markAttendance(): void {
+  
+  this.router.navigate(['/attendance']);
+}
+
+// Method to handle "View Payslips" button click
+viewPayslips(): void {
+  
+  this.router.navigate(['/payslip']);
+}
+
+
 }

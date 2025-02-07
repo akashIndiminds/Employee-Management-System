@@ -142,6 +142,14 @@
   border-left: 4px solid #2980b9;
 }
 
+
+
+
+
+
+
+
+
 /* Dashboard Content Section */
 .dashboard-content {
   background-color: #ffffff;
@@ -151,7 +159,10 @@
   width: 100%;
   max-width: 800px;
   text-align: center;
+  margin: 0 auto;
 }
+
+/* Overview Title Styling */
 .overview-title {
   font-size: 28px;
   font-weight: 700;
@@ -177,6 +188,95 @@
   font-size: 18px;
   color: #34495e;
   line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* Quick Actions Section */
+.quick-actions {
+  padding: 20px 0;
+  margin: 20px 0;
+}
+
+.quick-actions h3 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: #2980b9;
+  font-weight: 600;
+  position: relative;  /* Added this */
+  padding-bottom: 15px;  /* Added this */
+}
+
+.quick-actions h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #2980b9, #3498db);
+  border-radius: 2px;
+}
+
+/* Actions Container and Buttons */
+.actions-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.actions-container button {
+  flex: 1 1 200px;
+  padding: 16px 24px;
+  background-color: #2980b9;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(41, 128, 185, 0.2);
+  font-weight: 500;
+  min-width: 180px;
+  max-width: 250px;
+}
+
+.actions-container button:hover {
+  background-color: #3498db;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(41, 128, 185, 0.3);
+}
+
+.actions-container button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(41, 128, 185, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-content {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .actions-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions-container button {
+    max-width: 100%;
+  }
+
+  .overview-title {
+    font-size: 24px;
+  }
+
+  .overview-description {
+    font-size: 16px;
+  }
 }
 
 /* Status Indicators */
@@ -294,3 +394,7 @@
     padding: 40px;
   }
 }
+
+
+
+

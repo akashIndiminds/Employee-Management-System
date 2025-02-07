@@ -1,0 +1,64 @@
+/* Ensures the payslip container is centered and below the TopBar */
+.payslip-container {
+    width: 450px; /* Adjust width as needed */
+    margin: 100px auto 20px; /* Pushes it below the TopBar */
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Heading style */
+.payslip-container h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Card container for the payslip details */
+.payslip-card {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+    text-align: left;
+}
+
+/* Pay details */
+.payslip-card p {
+    font-size: 16px;
+    color: #444;
+    margin: 8px 0;
+}
+
+/* Styling for amounts */
+.payslip-card strong {
+    color: #222;
+}
+
+/* Highlight net salary */
+.net-salary {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+/* Error message */
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .payslip-container {
+        width: 90%;
+        margin: 80px auto;
+    }
+}

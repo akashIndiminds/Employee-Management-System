@@ -47,24 +47,23 @@ export class SidebarComponent {
   
     this.checkInService.checkAttendanceStatus(employeeCode).subscribe({
       next: (response) => {
-      //  console.log('Check-in Status:', response.CheckInStatus);
-       // console.log('Working Hours:', response.Duration);
-  
-        // Store the data in the CheckInService
-        this.checkInService.storeCheckInStatus(
-          response.CheckInStatus,
-          response.Duration
-        );
-  
-        // Navigate to the Attendance page only after storing data
-        this.router.navigate(['/attendance']).then(() => {
+        this.checkInService.storeCheckInStatus(response.CheckInStatus, response.Duration);
+    
+        // Pass data as query parameters when navigating
+        this.router.navigate(['/attendance'], {
+          queryParams: {
+            checkInStatus: response.CheckInStatus,
+            duration: response.Duration
+          }
+        }).then(() => {
           this.toggle(); // Close sidebar after navigation
         });
       },
       error: (error) => {
-        //console.error('Error checking attendance status:', error);
+        console.error('Error checking attendance status:', error);
       },
     });
+    
   }
   
 

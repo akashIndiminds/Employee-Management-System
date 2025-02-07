@@ -1,0 +1,36 @@
+<!-- TopBar: Displayed at the top -->
+<app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
+
+<app-sidebar
+  [isOpen]="isSidebarOpen"
+  (isOpenChange)="isSidebarOpen = $event"
+></app-sidebar>
+
+<div class="leave-container">
+    <h2>Apply for Leave</h2>
+    
+    <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+  
+    <form (ngSubmit)="submitLeaveRequest()">
+      <label for="leaveType">Leave Type:</label>
+      <select id="leaveType" [(ngModel)]="leaveRequest.leaveType" name="leaveType" required>
+        <option value="sick">Sick Leave</option>
+        <option value="casual">Casual Leave</option>
+        <option value="earned">Earned Leave</option>
+      </select>
+  
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" [(ngModel)]="leaveRequest.startDate" name="startDate" required />
+  
+      <label for="endDate">End Date:</label>
+      <input type="date" id="endDate" [(ngModel)]="leaveRequest.endDate" name="endDate" required />
+  
+      <label for="reason">Reason:</label>
+      <textarea id="reason" [(ngModel)]="leaveRequest.reason" name="reason" required></textarea>
+  
+      <button type="submit">Submit Leave Request</button>
+    </form>
+  </div>
+  
+  

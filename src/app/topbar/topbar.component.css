@@ -18,7 +18,7 @@
 .company-name {
   flex: 1;
   text-align: left;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: bold;
   color: #ffffff;
   white-space: nowrap;
@@ -28,7 +28,7 @@
 
 /* Hamburger Icon */
 .hamburger {
-  font-size: 24px;
+  font-size: 25px;
   color: white;
   background: none;
   border: none;
@@ -53,15 +53,42 @@
 
 /* Profile Logo */
 .profile-logo {
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   object-fit: cover;
 }
 
+.profile-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
 /* Welcome Text */
 .welcome-text {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: #ffffff;
   text-align: right;
@@ -95,5 +122,135 @@
 
   .top-bar {
     padding: 8px 10px;
+  }
+}
+/* Notification Container */
+.notification-container {
+  position: relative;
+
+}
+
+.notification-icon {
+  position: relative;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.notification-icon i {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+/* Notification Badge */
+.notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Notification Panel */
+.notification-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 320px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-header {
+  padding: 15px;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #343a40;
+}
+
+.mark-all-read {
+  background: none;
+  border: none;
+  color: #2980b9;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Notification Items */
+.notification-item {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e9ecef;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+  background-color: #f8f9fa;
+}
+
+.notification-item.unread {
+  background-color: #f0f7ff;
+}
+
+.notification-title {
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 4px;
+}
+
+.notification-message {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 4px;
+}
+
+.notification-time {
+  font-size: 0.8rem;
+  color: #adb5bd;
+}
+
+.no-notifications {
+  padding: 20px;
+  text-align: center;
+  color: #6c757d;
+}
+
+/* Scrollbar Styling */
+.notification-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notification-panel::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.notification-panel::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .notification-panel {
+    width: 280px;
+    right: -70px;
   }
 }

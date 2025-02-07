@@ -1,17 +1,58 @@
 <div class="top-bar">
-  <!-- Company Name -->
   <button class="hamburger" (click)="onToggleSidebar()">&#9776;</button>
   <div class="company-name">
     Indiminds Technologies
   </div>
 
-  <!-- Right Section: Welcome Message -->
   <div class="top-bar-right">
-    <img
-      src="./images/3293466.png"
-      alt="Profile Logo"
-      class="profile-logo"
-    />
+    <!-- Notification Icon and Panel -->
+    <div class="notification-container">
+      <div class="notification-icon" (click)="toggleNotificationsPanel($event)">
+        <i class="fas fa-bell"></i>
+        <span *ngIf="unreadCount > 0" class="notification-badge">
+          {{ unreadCount }}
+        </span>
+      </div>
+
+      <!-- Notification Panel -->
+      <div class="notification-panel" *ngIf="showNotifications">
+        <div class="notification-header">
+          <h3>Notifications</h3>
+          <button class="mark-all-read" (click)="markAllAsRead()">
+            Mark all as read
+          </button>
+        </div>
+        
+        <div class="notification-list">
+          <div *ngFor="let notification of notifications" 
+               [class]="'notification-item ' + (notification.isRead ? 'read' : 'unread')"
+               (click)="markAsRead(notification)">
+            <div class="notification-content">
+              <div class="notification-title">{{ notification.title }}</div>
+              <div class="notification-message">{{ notification.message }}</div>
+              <div class="notification-time">
+                {{ notification.timestamp | date:'shortTime' }}
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="notifications.length === 0" class="no-notifications">
+            No notifications
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-container">
+      <img
+        src="./images/3293466.png"
+        alt="Profile Logo"
+        class="profile-logo"
+        (click)="goToProfile()"
+      />
+      <span class="tooltip-text">Profile Section</span>
+    </div>
+
     <span *ngIf="welcomeMessage" class="welcome-text">
       {{ welcomeMessage }}
     </span>

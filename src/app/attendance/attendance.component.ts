@@ -147,6 +147,7 @@ export class AttendanceComponent implements OnInit {
     } else {
     //  console.error('Employee code not found. Please log in again.');
     }
+    this.fetchLastAttendanceDetails();
   }
   
 

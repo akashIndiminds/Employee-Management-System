@@ -6,7 +6,7 @@ import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 // Export base URL separately for reuse http://192.168.1.41:8000
-export const baseUrl = 'http://192.168.1.41:8000';
+export const baseUrl = 'http://127.0.0.1:8000';
 
 
 export const appConfig: ApplicationConfig = {
