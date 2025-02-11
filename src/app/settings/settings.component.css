@@ -279,7 +279,7 @@ button:hover {
 }
 
 .card.notifications-section input[type="checkbox"]:checked {
-  background-color: linear-gradient(135deg, #1d3557, #457b9d);; /* Background color when checked */
+  background-color: linear-gradient(135deg, #1d3557, #457b9d); /* Background color when checked */
 }
 
 

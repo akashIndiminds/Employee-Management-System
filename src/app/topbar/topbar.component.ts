@@ -4,11 +4,12 @@ import { EmployeeService } from '../services/employee.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { NotificationService, Notification } from '../services/notification.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,  MatIconModule],
   templateUrl: './topbar.component.html',
   styleUrls: ['./topbar.component.css']
 })
@@ -17,7 +18,7 @@ export class TopBarComponent implements OnInit {
   notifications: Notification[] = [];
   unreadCount: number = 0;
   showNotifications: boolean = false;
-
+  
   @Output() toggleSidebar = new EventEmitter<void>(); // Event emitter to toggle the sidebar
 
   constructor(
@@ -43,28 +44,42 @@ export class TopBarComponent implements OnInit {
     } else {
       this.welcomeMessage = 'Welcome, Guest!';
     }
-
+    this.notificationService.loadNotifications();
     this.notificationService.getNotifications().subscribe((notifications) => {
       this.notifications = notifications;
     });
-
+    
     this.notificationService.getUnreadCount().subscribe((count) => {
       this.unreadCount = count;
     });
   }
 
   toggleNotificationsPanel(event: Event) {
-    event.stopPropagation(); // Prevents event from reaching document click listener
+    event.stopPropagation();
     this.showNotifications = !this.showNotifications;
+    console.log("Notification panel visibility:", this.showNotifications);
   }
+  
 
   markAsRead(notification: Notification) {
-    this.notificationService.markAsRead(notification.id);
+    console.log("Mark all as read clicked");
+    if (!notification.isRead) {
+      this.notificationService.markAsRead(notification.id).subscribe(() => {
+        notification.isRead = true;
+        this.unreadCount--; // Decrement unread count
+      });
+    }
   }
-
+  
   markAllAsRead() {
-    this.notificationService.markAllAsRead();
+    console.log("Mark all as read clicked");
+    this.notificationService.markAllAsRead().subscribe(() => {
+      this.notifications.forEach((notification) => (notification.isRead = true));
+      this.unreadCount = 0; // Reset unread count
+    });
   }
+  
+  
 
   onToggleSidebar() {
     this.toggleSidebar.emit(); // Emit the event to toggle the sidebar

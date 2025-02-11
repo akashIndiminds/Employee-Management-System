@@ -3,35 +3,50 @@ import { Router } from '@angular/router';
 import { TopBarComponent } from '../topbar/topbar.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'; // Import HttpClient
+import { FormsModule } from '@angular/forms';
+import { baseUrl } from '../app.config';
+
+
+interface EmployeeCode {
+  Text: string;
+  Value: string;
+}
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, TopBarComponent],
+  imports: [CommonModule, SidebarComponent, TopBarComponent, FormsModule],
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-  isSidebarOpen: boolean = false; // Declare the sidebar state
+  isSidebarOpen: boolean = false;
+  employeeCodes: EmployeeCode[] = [];
+  selectedEmployeeCode: string = '';
+  announcementText: string = '';
+  announcementMessage: string = '';
+  isSuccess: boolean = false;
+  private apiUrl = `${baseUrl}/announcements/create`;
+  
+  constructor(private router: Router, private http: HttpClient) {} // Inject HttpClient
+  
+  ngOnInit() {
+    this.fetchEmployeeCodes();
+  }
 
-  constructor(private router: Router) {}
-
-  // Navigate to Users page
   navigateToUsers() {
-    this.router.navigate(['/registeruser']);  // Replace '/users' with the path to your users page
+    this.router.navigate(['/registeruser']);
   }
 
-  // Navigate to Settings page
   navigateToSetAttendance() {
-    this.router.navigate(['/setattendance']);  // Replace '/settings' with the path to your settings page
+    this.router.navigate(['/setattendance']);
   }
 
-  // Navigate to Reports page
   navigateToReports() {
-    this.router.navigate(['/report']);  // Replace '/reports' with the path to your reports page
+    this.router.navigate(['/report']);
   }
 
-  // Toggle Sidebar visibility
   toggleSidebar(): void {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
@@ -46,5 +61,64 @@ export class AdminComponent {
       this.isSidebarOpen = false;
     }
   }
-  
+
+
+  fetchEmployeeCodes(): void {
+    const url = `${baseUrl}/EmployeeCodes`;
+    this.http.get<EmployeeCode[]>(url).subscribe(
+      (data: EmployeeCode[]) => {
+        this.employeeCodes = data.sort((a, b) => {
+          const nameA = a.Text.split(" - ")[0].trim().toUpperCase();
+          const nameB = b.Text.split(" - ")[0].trim().toUpperCase();
+          return nameA.localeCompare(nameB);
+        });
+      },
+      (error: any) => {
+        console.error("Error fetching employee codes:", error);
+        this.showError("Error loading employee list");
+      }
+    );
+  }
+
+  submitAnnouncement() {
+    if (!this.announcementText.trim()) {
+      this.showError("Announcement cannot be empty!");
+      return;
+    }
+
+    const requestBody = {
+      text: this.announcementText,
+      employee_code: this.selectedEmployeeCode || null // Send null for global announcements
+    };
+
+    this.http.post(this.apiUrl, requestBody).subscribe(
+      (response: any) => {
+        this.showSuccess("Announcement successfully posted!");
+        this.announcementText = '';
+        this.selectedEmployeeCode = '';
+      },
+      (error: HttpErrorResponse) => {
+        this.showError("Error posting announcement. Please try again!");
+        console.error("Error:", error.message);
+      }
+    );
+  }
+
+  private showSuccess(message: string) {
+    this.announcementMessage = message;
+    this.isSuccess = true;
+    this.clearMessage();
+  }
+
+  private showError(message: string) {
+    this.announcementMessage = message;
+    this.isSuccess = false;
+    this.clearMessage();
+  }
+
+  private clearMessage() {
+    setTimeout(() => {
+      this.announcementMessage = '';
+    }, 3000);
+  }
 }

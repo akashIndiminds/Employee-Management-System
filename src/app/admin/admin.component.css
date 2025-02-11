@@ -2,7 +2,6 @@
 .attendance-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-  margin-top: 50px; /* Remove margin-top to make sure the page starts from the top */
 }
 
 .main-content {
@@ -17,11 +16,9 @@
   padding: 40px 20px;
   background-color: #f4f7fc;
   min-height: 100vh;
-  align-items: flex-start; /* Align content to the left */
-  align-items: center;  /* Centering the content */
-  margin-top: 50px;
-  flex-grow: 1; /* Ensure content area takes the remaining space */
-  align-items: center; /* Center horizontally */
+  width: 100%;
+  align-items: center;
+  margin-top: 30px;
 }
 
 .admin-header {
@@ -53,7 +50,8 @@
     gap: 20px;
     justify-items: center;
     width: 100%;
-    max-width: 1200px; /* Limit content width */
+    max-width: 1200px;
+    margin-bottom: 40px; /* Add space between cards and announcement section */
   }
 
   /* Card Styling */
@@ -65,7 +63,7 @@
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
-    max-width: 350px; /* Limit card width */
+    max-width: 300px; /* Limit card width */
   }
   
   .card h2 {
@@ -133,4 +131,192 @@
     padding: 10px 20px;
   }
 }
-  
+
+
+
+/* Announcement Section Container */
+.announcement-section {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.announcement-section:hover {
+  transform: translateY(-5px);
+}
+
+
+/* Section Title */
+.announcement-section h2 {
+  color: #2c3e50;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
+  width: 100%;
+  position: relative;  /* Add this */
+  padding-bottom: 15px;  /* Add space for the line */
+}
+
+.announcement-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #00aaff;
+  border-radius: 2px;
+}
+.select-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.select-container label {
+  display: block;
+  margin-bottom: 8px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.employee-select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  font-size: 16px;
+  color: #2c3e50;
+  cursor: pointer;
+}
+
+.employee-select:focus {
+  outline: none;
+  border-color: #00aaff;
+  box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.1);
+}
+
+/* Textarea Container */
+.announcement-section textarea {
+  width: 90%;
+  min-height: 120px;
+  padding: 15px;
+  margin: 0 auto;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  font-size: 16px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.announcement-section select {
+  width: 90%;
+  padding: 8px;
+  margin: 10px 0;
+  border: 2px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+
+.announcement-section textarea:focus {
+  outline: none;
+  border-color: #00aaff;
+  box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.1);
+}
+
+.announcement-section textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 250px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  background-color: #00aaff;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.submit-btn:not(:disabled):hover {
+  background-color: #0096e6;
+  transform: translateY(-2px);
+}
+
+/* Status Message Styling */
+.status-message {
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 0 auto;
+  width: 90%;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.status-message.success {
+  background-color: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.status-message.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .announcement-section {
+    padding: 20px;
+    margin: 20px 15px;
+  }
+
+  .announcement-section h2 {
+    font-size: 20px;
+  }
+
+  .announcement-section textarea {
+    min-height: 100px;
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .submit-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}

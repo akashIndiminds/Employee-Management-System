@@ -150,8 +150,37 @@
 /* Sidebar Responsiveness */
 @media screen and (max-width: 768px) {
   .sidebar {
-    width: 80%;
-    transform: translateX(-100%); /* Ensure it's initially off-screen */
+    width: 100%;  /* Make sidebar full-screen on mobile */
+    height: 100vh; /* Ensure full height */
+    transform: translateX(-100%); /* Initially hidden */
+  }
+
+  .sidebar.open {
+    transform: translateX(0); /* Ensure it slides in */
+  }
+
+  .company-logo img {
+    max-width: 150px;
+  }
+
+  .submenu li {
+    font-size: 1rem;
+  }
+
+  .dropdown li {
+    font-size: 0.9rem;
+  }
+
+  .bottom-menu li {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .sidebar {
+    width: 100%;  /* Make sidebar full-screen on mobile */
+    height: 100vh; /* Ensure full height */
+    transform: translateX(-100%); /* Initially hidden */
   }
 
   .sidebar.open {

@@ -2,6 +2,7 @@
 <app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
 <app-sidebar [(isOpen)]="isSidebarOpen"></app-sidebar>
 
+
 <div class="report-page">
   <div class="report-header">
     <h1>Reports</h1>
@@ -20,6 +21,7 @@
       </button>
     </div>
   </div>
+  
 
   <div *ngIf="showAttendanceReport" class="attendance-report">
     <h2>Attendance Report Generator</h2>

@@ -28,7 +28,7 @@
                [class]="'notification-item ' + (notification.isRead ? 'read' : 'unread')"
                (click)="markAsRead(notification)">
             <div class="notification-content">
-              <div class="notification-title">{{ notification.title }}</div>
+              <!-- <div class="notification-title">{{ notification.title }}</div> -->
               <div class="notification-message">{{ notification.message }}</div>
               <div class="notification-time">
                 {{ notification.timestamp | date:'shortTime' }}

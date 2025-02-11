@@ -31,6 +31,48 @@
           <button pButton icon="pi pi-chart-line" label="View Reports" (click)="navigateToReports()">Reports</button>
         </div>
       </div>
+
+      <!-- Announcement Section -->
+     
+      <div class="announcement-section">
+        <h2>Create Announcement</h2>
+        
+        <!-- Employee Selection Dropdown -->
+        <div class="select-container">
+          <label for="employeeSelect">Select Recipient:</label>
+          <select 
+            id="employeeSelect" 
+            [(ngModel)]="selectedEmployeeCode"
+            class="employee-select">
+            <option value="">All Employees (Global)</option>
+            <option *ngFor="let emp of employeeCodes" [value]="emp.Value">
+              {{emp.Text}}
+            </option>
+          </select>
+        </div>
+      
+        <!-- Announcement Text Area -->
+        <textarea 
+          [(ngModel)]="announcementText" 
+          placeholder="Enter announcement..." 
+          rows="3">
+        </textarea>
+      
+        <!-- Submit Button -->
+        <button 
+          class="submit-btn" 
+          (click)="submitAnnouncement()"
+          [disabled]="!announcementText.trim()">
+          Post Announcement
+        </button>
+      
+        <!-- Status Message -->
+        <div class="status-message" 
+          *ngIf="announcementMessage"
+          [ngClass]="{'success': isSuccess, 'error': !isSuccess}">
+          {{ announcementMessage }}
+        </div>
+      </div>
     </div>
   </div>
 </div>
