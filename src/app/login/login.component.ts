@@ -49,7 +49,7 @@ export class LoginComponent {
             this.authService.setEmployeeCode(decryptedEmployeeCode);
 
             // Navigate to the dashboard without query parameters
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/attendance']);
             
           } catch (error) {
             alert('Error processing login response');

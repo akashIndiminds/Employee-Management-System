@@ -5,7 +5,6 @@
   </div>
 
   <div class="top-bar-right">
-    <!-- Notification Icon and Panel -->
     <div class="notification-container">
       <div class="notification-icon" (click)="toggleNotificationsPanel($event)">
         <i class="fas fa-bell"></i>
@@ -14,7 +13,6 @@
         </span>
       </div>
 
-      <!-- Notification Panel -->
       <div class="notification-panel" *ngIf="showNotifications">
         <div class="notification-header">
           <h3>Notifications</h3>
@@ -22,20 +20,19 @@
             Mark all as read
           </button>
         </div>
-        
+
         <div class="notification-list">
-          <div *ngFor="let notification of notifications" 
+          <div *ngFor="let notification of notifications"
                [class]="'notification-item ' + (notification.isRead ? 'read' : 'unread')"
                (click)="markAsRead(notification)">
             <div class="notification-content">
-              <!-- <div class="notification-title">{{ notification.title }}</div> -->
               <div class="notification-message">{{ notification.message }}</div>
               <div class="notification-time">
                 {{ notification.timestamp | date:'shortTime' }}
               </div>
             </div>
           </div>
-          
+
           <div *ngIf="notifications.length === 0" class="no-notifications">
             No notifications
           </div>
@@ -53,8 +50,7 @@
       <span class="tooltip-text">Profile Section</span>
     </div>
 
-    <span *ngIf="welcomeMessage" class="welcome-text">
-      {{ welcomeMessage }}
+    <span *ngIf="welcomeMessage && !isMobile" class="welcome-text">  {{ welcomeMessage }}
     </span>
   </div>
 </div>

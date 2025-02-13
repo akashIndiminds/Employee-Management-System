@@ -132,5 +132,4 @@ viewPayslips(): void {
   this.router.navigate(['/payslip']);
 }
 
-
 }

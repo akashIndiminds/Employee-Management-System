@@ -28,11 +28,12 @@ export class AdminComponent {
   announcementMessage: string = '';
   isSuccess: boolean = false;
   private apiUrl = `${baseUrl}/announcements/create`;
-  
+  isMobileView: boolean = false;
   constructor(private router: Router, private http: HttpClient) {} // Inject HttpClient
   
   ngOnInit() {
     this.fetchEmployeeCodes();
+    this.isMobileView = window.innerWidth <= 768;
   }
 
   navigateToUsers() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, HostListener, ElementRef,  Input  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EmployeeService } from '../services/employee.service';
 import { AuthService } from '../services/auth.service';
@@ -20,7 +20,8 @@ export class TopBarComponent implements OnInit {
   showNotifications: boolean = false;
   
   @Output() toggleSidebar = new EventEmitter<void>(); // Event emitter to toggle the sidebar
-
+  @Input() isMobile: boolean = false;
+  
   constructor(
     private authService: AuthService,
     private employeeService: EmployeeService,

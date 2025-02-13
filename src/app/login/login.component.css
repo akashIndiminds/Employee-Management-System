@@ -1,13 +1,22 @@
-/* Container styling with background gradient animation */
+/* General Styling and Container */
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-  padding: 1rem; /* Add padding for smaller screens */
+  overflow-x: hidden;
+  background: linear-gradient(
+    45deg,
+    #4ab3ff, /* Lighter, more modern blues */
+    #49d9e0,
+    #a8e6cf,
+    #ffdd94,
+    #ffa69e
+  ); /* Updated gradient palette */
+  background-size: 500% 500%; /* Increased size for smoother animation */
+  animation: gradientBG 20s ease infinite; /* Slightly slower animation */
+  padding: 1.5rem; /* Increased padding for better spacing on smaller screens */
+  font-family: 'Arial', sans-serif; /* Added a default font family */
 }
 
 @keyframes gradientBG {
@@ -22,41 +31,68 @@
   }
 }
 
-/* Card styling with hover effect */
+/* Card Styling */
 .card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: clamp(1rem, 5vw, 2rem); /* Responsive padding */
+  background: rgba(255, 255, 255, 0.95); /* Slightly less transparent white */
+  backdrop-filter: blur(12px); /* Slightly increased blur */
+  border-radius: 25px; /* More rounded corners for a softer look */
+  padding: clamp(2rem, 6vw, 3rem); /* Increased padding */
   width: 100%;
-  max-width: min(90vw, 400px); /* Responsive max-width */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transform: translateY(0);
-  transition: all 0.3s ease;
+  max-width: 450px; /* Slightly wider max-width for better desktop appearance */
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+  text-align: center; /* Center align text within the card */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover */
 }
 
-/* Disable hover effect on touch devices */
 @media (hover: hover) {
   .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px); /* Increased hover lift */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25); /* Enhanced hover shadow */
   }
 }
 
-/* Header styling with animation */
-.card h2 {
+/* Login Header */
+.login-header {
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  animation: fadeInDown 0.7s ease-out; /* Slightly slower animation */
+}
+
+.login-icon {
+  width: clamp(80px, 15vw, 120px); /* Responsive icon size */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 1rem;
+  display: block; /* Ensure it's on a new line and can be centered */
+  margin-left: auto;  /* Center the icon */
+  margin-right: auto;
+  animation: pulse 1.5s ease-in-out infinite alternate; /* Added pulse animation to icon */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+
+.login-header h2 {
   color: #333;
-  text-align: center;
-  margin-bottom: clamp(1rem, 4vw, 2rem); /* Responsive margin */
-  position: relative;
-  animation: fadeInDown 0.6s ease-out;
-  font-size: clamp(1.5rem, 4vw, 2rem); /* Responsive font size */
+  font-size: clamp(2rem, 5vw, 2.5rem); /* Increased font size */
+  margin-bottom: 0.5rem; /* Reduced margin below title */
+}
+
+.login-header p { /* Style for the subtitle */
+  color: #777;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin-bottom: 0; /* Remove default bottom margin for cleaner spacing */
 }
 
 @keyframes fadeInDown {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-30px); /* Increased translateY for more pronounced effect */
   }
   to {
     opacity: 1;
@@ -64,243 +100,191 @@
   }
 }
 
-/* Form field styling */
-.p-field {
-  margin-bottom: clamp(1rem, 3vw, 1.5rem); /* Responsive margin */
-  animation: fadeIn 0.6s ease-out;
+/* Login Form */
+.login-form {
+  animation: fadeIn 0.7s ease-out 0.2s backwards; /* Staggered fade in */
 }
 
-/* Label styling */
-.p-field label {
+.form-group { /* Renamed class */
+  margin-bottom: clamp(1.5rem, 4vw, 2rem); /* Increased margin for form groups */
+}
+
+.form-group label { /* Renamed class */
   display: block;
-  margin-bottom: clamp(0.3rem, 2vw, 0.5rem); /* Responsive margin */
+  margin-bottom: 0.5rem; /* Adjusted label margin */
   color: #555;
-  font-weight: 500;
-  font-size: clamp(0.875rem, 2vw, 1rem); /* Responsive font size */
-  transform: translateX(0);
-  transition: transform 0.3s ease;
+  font-weight: 600; /* Slightly bolder label */
+  font-size: clamp(1rem, 2.5vw, 1.1rem); /* Slightly larger label font size */
+  text-align: left; /* Align labels to the left */
 }
 
-/* Input styling */
-.p-field input {
+.form-group input { /* Renamed class */
   width: 100%;
-  padding: clamp(0.5rem, 2vw, 0.8rem); /* Responsive padding */
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  padding: clamp(0.8rem, 2.5vw, 1rem); /* Increased input padding */
+  border: 2px solid #ccc; /* Lighter border color */
+  border-radius: 10px; /* More rounded input corners */
   outline: none;
-  transition: all 0.3s ease;
-  font-size: clamp(0.875rem, 2vw, 1rem); /* Responsive font size */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions on focus */
+  font-size: clamp(1rem, 2.5vw, 1.1rem); /* Slightly larger input font size */
 }
 
-/* Button styling */
+.form-group input:focus { /* Renamed class and added focus style */
+  border-color: #4ab3ff; /* Highlighted border on focus */
+  box-shadow: 0 0 0 2px rgba(74, 179, 255, 0.2); /* Subtle focus box shadow */
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Login Button */
 .login-button {
   width: 100%;
-  padding: clamp(0.8rem, 2.5vw, 1rem); /* Responsive padding */
-  background: linear-gradient(45deg, #23a6d5, #23d5ab);
+  padding: clamp(1rem, 3vw, 1.2rem); /* Increased button padding */
+  background: linear-gradient(135deg, #4ab3ff, #49d9e0); /* Updated button gradient */
   border: none;
-  border-radius: 8px;
+  border-radius: 10px; /* More rounded button corners */
   color: white;
   font-weight: bold;
-  font-size: clamp(0.875rem, 2vw, 1rem); /* Responsive font size */
+  font-size: clamp(1rem, 2.5vw, 1.1rem); /* Slightly larger button font size */
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth button transitions */
   position: relative;
   overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Button shadow */
+  margin-top: 0.5rem; /* Add a bit of margin above the button */
 }
+
+.login-button:hover {
+  background: linear-gradient(135deg, #4099e0, #40c0c7); /* Slightly darker gradient on hover */
+  transform: translateY(-2px); /* Subtle lift on hover */
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.login-button:active {
+  transform: translateY(0); /* Reset transform on active/click */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Reset shadow on active/click */
+}
+
+
+/* Login Footer */
+.login-footer {
+  margin-top: 2rem; /* Add spacing above the footer */
+  font-size: 0.9rem;
+  color: #777;
+  animation: fadeInUp 0.7s ease-out 0.4s backwards; /* Fade in footer with delay */
+}
+
+.login-footer a {
+  color: #4ab3ff; /* Link color */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-footer a:hover {
+  color: #4099e0; /* Darker link color on hover */
+  text-decoration: underline;
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* Media queries for different screen sizes */
-@media (max-width: 480px) {
+@media (max-width: 768px) { /* For tablets and smaller desktops */
   .card {
-    border-radius: 15px;
+    padding: clamp(1.5rem, 5vw, 2.5rem); /* Adjust card padding for medium screens */
+    max-width: 90vw; /* Allow card to take more width on smaller screens */
+    border-radius: 20px; /* Slightly less rounded on smaller screens */
   }
 
-  .p-field:focus-within label {
-    transform: translateX(3px); /* Smaller translation on mobile */
+  .login-header {
+    margin-bottom: 1.8rem; /* Adjust header margin for medium screens */
   }
 
-  .login-button::after {
-    display: none; /* Disable ripple effect on mobile */
+  .form-group {
+    margin-bottom: 1.8rem; /* Adjust form group margin for medium screens */
+  }
+
+  .login-footer {
+    margin-top: 1.5rem; /* Adjust footer margin for medium screens */
   }
 }
 
-/* Reduce animations on devices that prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
+
+@media (max-width: 480px) { /* For mobile devices */
   .login-container {
-    animation: none;
+    padding: 1rem; /* Keep container padding, might even reduce more if needed */
   }
 
-  .card h2,
-  .p-field,
+  .card {
+    padding: clamp(1rem, 5vw, 2rem); /* Keep card padding responsive, adjust if needed */
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    max-width: 100%; /* Ensure card takes full width of login-container on mobile */
+    margin-left: 1rem; /* Add some margin on left and right if needed to prevent touching edges*/
+    margin-right: 1rem;
+    box-sizing: border-box; /* Important: Ensure padding/border are inside the card's width */
+  }
+
+  .login-header {
+    margin-bottom: 1.2rem;
+  }
+
+  .login-icon {
+    width: clamp(60px, 12vw, 90px);
+  }
+
+  .login-header h2 {
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+    box-sizing: border-box; /* Ensure padding/border are inside form-group's width */
+    padding-left: 0; /* Remove left/right padding from form-group if any was unintentionally added */
+    padding-right: 0;
+  }
+
+  .form-group label {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+  }
+
+  .form-group input,
   .login-button {
-    animation: none;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    padding: clamp(0.7rem, 2.5vw, 0.9rem);
+    border-radius: 8px;
+    box-sizing: border-box; /* Crucial: Ensure padding/border are inside input's width */
   }
 
-  .login-button,
-  .card,
-  .p-field label,
-  .p-field input {
+  .login-footer {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  .login-container, .card h2, .login-form, .login-footer, .login-icon {
+    animation: none;
+  }
+  .card, .login-button, .form-group label, .form-group input, .login-footer a {
     transition: none;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-  padding: 1rem; 
-
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-
-.card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: clamp(1rem, 5vw, 2rem); 
-  width: 120%;
-  max-width: min(90vw, 400px); 
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transform: translateY(0);
-  transition: all 0.3s ease;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-}
-
-
-@media (hover: hover) {
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-  }
-}
-
-
-.login-icon{
-  width: 145px;
-  height: 190px;
-  align-items: start;
-  animation: fadeInDown 0.6s ease-out;
-}
-
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-.p-field {
-  margin-bottom: clamp(1rem, 3vw, 1.5rem); 
-  animation: fadeIn 0.6s ease-out;
-}
-
-
-.p-field label {
-  display: block;
-  margin-bottom: clamp(0.3rem, 2vw, 0.5rem); 
-  color: #555;
-  font-weight: 500;
-  font-size: clamp(0.875rem, 2vw, 1rem); 
-  transform: translateX(0);
-  transition: transform 0.3s ease;
-}
-
-
-.p-field input {
-  width: 100%;
-  padding: clamp(0.5rem, 2vw, 0.8rem); 
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-  transition: all 0.3s ease;
-  font-size: clamp(0.875rem, 2vw, 1rem); 
-}
-
-.login-button {
-  width: 100%;
-  padding: clamp(0.8rem, 2.5vw, 1rem); 
-  background: linear-gradient(45deg, #23a6d5, #23d5ab);
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-weight: bold;
-  font-size: clamp(0.875rem, 2vw, 1rem); 
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  align-items: center;
-  justify-items: center; 
-}
-
-
-@media (max-width: 480px) {
-  .card {
-    border-radius: 15px;
-  }
-
-  .p-field:focus-within label {
-    transform: translateX(3px); 
-
-  .login-button::after {
-    display: none; 
-  }
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  .login-container {
-    animation: none;
-  }
-
-  .card h2,
-  .p-field,
-  .login-button {
-    animation: none;
-  }
-
-  .login-button,
-  .card,
-  .p-field label,
-  .p-field input {
-    transition: none;
-  }
-  .login-icon{
-    width: 85px;
-    height: 90px;
-}
-}
-}*/ 

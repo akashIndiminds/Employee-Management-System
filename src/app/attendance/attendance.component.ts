@@ -116,6 +116,7 @@ export class AttendanceComponent implements OnInit {
   totalWorkingHours: string = '0 hrs 0 mins';
   selectedStatus: number = 1;
   private lastToastMessage: string | null = null;
+  isMobileView: boolean = false;
   statusOptions = [
     { id: 1, status: 'Present' },
     { id: 2, status: 'Absent' },
@@ -137,6 +138,7 @@ export class AttendanceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isMobileView = window.innerWidth <= 768;
     this.employeeCode = this.authService.getEmployeeCode(); // Fetch employee code from AuthService
   
     if (this.employeeCode) {
@@ -303,10 +305,10 @@ export class AttendanceComponent implements OnInit {
     return; // Prevent duplicate messages
   }
   this.lastToastMessage = currentMessage;
-  this.messageService.add({ severity, summary, detail, life: 3000 });
+  this.messageService.add({ severity, summary, detail, life: 2000 });
 
   // Clear the last message after a delay
-  setTimeout(() => (this.lastToastMessage = null), 3000);
+  setTimeout(() => (this.lastToastMessage = null), 2000);
 }
 
 

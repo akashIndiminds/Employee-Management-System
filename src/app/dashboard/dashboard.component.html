@@ -1,72 +1,68 @@
-<!-- TopBar: Displayed at the top -->
-<app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
+<div class="dashboard-page">
+  <!-- TopBar: Displayed at the top -->
+  <app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
 
-<app-sidebar
-  [isOpen]="isSidebarOpen"
-  (isOpenChange)="isSidebarOpen = $event"
-></app-sidebar>
+  <!-- Sidebar and Main Dashboard Layout -->
+  <div class="main-content">
+    <!-- Sidebar -->
+    <app-sidebar [(isOpen)]="isSidebarOpen"></app-sidebar>
 
-<!-- Main Dashboard Layout -->
-<div class="dashboard-container">
-  
-  <!-- Left Section (Text Content) -->
-  <div class="dashboard-content-wrapper">
-    <!-- Welcome Message Section -->
-    <div class="welcome-message">
-      <h1 class="dashboard-title">Welcome to the Dashboard!</h1>
-      <div *ngIf="employeeDetails" class="employee-details">
-        <p class="employee-info">
-          <span class="info-label">Your Employee ID:</span> {{ employeeDetails.employee_code }}
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+      
+      <!-- Welcome Message Section -->
+      <div class="welcome-message">
+        <h1 class="dashboard-title">Welcome to the Dashboard!</h1>
+        <div *ngIf="employeeDetails" class="employee-details">
+          <p class="employee-info">
+            <span class="info-label">Your Employee ID:</span> {{ employeeDetails.employee_code }}
+          </p>
+        </div>
+        <p *ngIf="!employeeDetails" class="loading-message">Loading employee details...</p>
+      </div>
+
+      <!-- Attendance Status Section -->
+      <div class="attendance-section">
+        <h3 class="attendance-title">Attendance Status</h3>
+        <div class="attendance-details">
+          <div class="attendance-row">
+            <div class="attendance-info">
+              <span class="info-label">Check-in Time</span>
+              <span class="attendance-time">{{ attendanceDetails.checkInTime || 'Not yet marked' }}</span>
+            </div>
+            <div class="attendance-info">
+              <span class="info-label">Check-out Time</span>
+              <span class="attendance-time">{{ attendanceDetails.checkOutTime || 'Not yet marked' }}</span>
+            </div>
+            <div class="attendance-info">
+              <span class="info-label">Status</span>
+              <span class="attendance-status">{{ attendanceDetails.status || 'Pending' }}</span>
+            </div>
+          </div>
+          <div class="attendance-info">
+            <span class="info-label">Remarks</span>
+            <span class="attendance-remarks">{{ attendanceDetails.remarks || 'No remarks provided' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Overview Section -->
+      <div class="dashboard-content">
+        <h2 class="overview-title">Dashboard Overview</h2>
+        <p class="overview-description">
+          Here you can manage your details, view reports, and more...
         </p>
-      </div>
-      <p *ngIf="!employeeDetails" class="loading-message">Loading employee details...</p>
-    </div>
 
+        <div class="quick-actions">
+          <h3>Quick Actions</h3>
+          <div class="actions-container">
+            <button (click)="applyForLeave()">Apply for Leave</button>
+            <button (click)="markAttendance()">Mark Attendance</button>
+            <button (click)="viewPayslips()">View Payslips</button>
+          </div>
+        </div>
+      </div>
 
-    <!-- Attendance Section -->
-    <div class="attendance-section">
-      <h3 class="attendance-title">Attendance Status</h3>
-      <div class="attendance-details">
-        <div class="attendance-row">
-          <div class="attendance-info">
-            <span class="info-label">Check-in Time</span>
-            <span class="attendance-time">{{ attendanceDetails.checkInTime || 'Not yet marked' }}</span>
-          </div>
-          <div class="attendance-info">
-            <span class="info-label">Check-out Time</span>
-            <span class="attendance-time">{{ attendanceDetails.checkOutTime || 'Not yet marked' }}</span>
-          </div>
-          <div class="attendance-info">
-            <span class="info-label">Status</span>
-            <span class="attendance-status">{{ attendanceDetails.status || 'Pending' }}</span>
-          </div>
-        </div>
-        <div class="attendance-info">
-          <span class="info-label">Remarks</span>
-          <span class="attendance-remarks">{{ attendanceDetails.remarks || 'No remarks provided' }}</span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Dashboard Content Section -->
-    <div class="dashboard-content">
-      <h2 class="overview-title">Dashboard Overview</h2>
-      <p class="overview-description">
-        Here you can manage your details, view reports, and more.
-      </p>
-    
-      <div class="quick-actions">
-        <h3>Quick Actions</h3>
-        <div class="actions-container">
-          <button (click)="applyForLeave()">Apply for Leave</button>
-          <button (click)="markAttendance()">Mark Attendance</button>
-          <button (click)="viewPayslips()">View Payslips</button>
-        </div>
-      </div>
     </div>
   </div>
-
- 
-
 </div>
- 

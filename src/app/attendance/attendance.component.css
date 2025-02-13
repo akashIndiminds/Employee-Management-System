@@ -2,13 +2,14 @@
 .attendance-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-  margin-top: 50px; /* Remove margin-top to make sure the page starts from the top */
+  /*margin-top: 50px; /* Remove margin-top to make sure the page starts from the top */
 }
 
 .main-content {
   display: flex;
   min-height: 100vh;
-  flex-direction: column; /* Ensure the layout is column-based */
+  padding-top: 50px; 
+  flex-direction: column; 
 }
 
 /* Adjusting Attendance Container to bring it closer to the top */

@@ -1,5 +1,12 @@
-/* General Admin Container Styles */
-.attendance-page {
+/* Reset and Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page Layout */
+.admin-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
 }
@@ -7,163 +14,227 @@
 .main-content {
   display: flex;
   min-height: 100vh;
-  flex-direction: row; /* Use row layout for sidebar and main content side by side */
+  padding-top: 50px;
+  flex-direction: column;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
+/* Admin Container */
 .admin-container {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 40px 20px;
+  padding: 2rem;
   background-color: #f4f7fc;
-  min-height: 100vh;
+  min-height: calc(100vh - 50px);
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 10px;
   align-items: center;
-  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
+/* Admin Header */
 .admin-header {
   text-align: center;
-  margin-bottom: 40px;
-  background: #00aaff;
-  color: white;
-  padding: 40px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  color: #2980b9;
+  padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(41, 128, 185, 0.08);
   width: 100%;
-  max-width: 1000px; /* Limit header width */
+  transition: all 0.3s ease;
 }
-  
+
+.admin-header:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(41, 128, 185, 0.12);
+}
+
 .admin-header h1 {
-  margin: 0;
-  font-size: 2.5rem;
+  font-size: 32px;
+  font-weight: 700;
+  color: #2980b9;
+  margin-bottom: 15px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.admin-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #2980b9, #3498db);
+  border-radius: 2px;
 }
 
 .admin-header p {
-  font-size: 1.2rem;
+  font-size: 18px;
+  color: #34495e;
+  line-height: 1.6;
+  margin-bottom: 15px;
   font-weight: 300;
 }
-  
-  /* Admin Content */
-  .admin-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    justify-items: center;
-    width: 100%;
-    max-width: 1200px;
-    margin-bottom: 40px; /* Add space between cards and announcement section */
-  }
 
-  /* Card Styling */
-  .card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%;
-    max-width: 300px; /* Limit card width */
-  }
-  
-  .card h2 {
-    font-size: 1.6rem;
-    color: #2c3e50;
-    margin-bottom: 15px;
-  }
-  
-  .card button {
-    background-color: #00aaff;
-    color: white;
-    font-weight: bold;
-    border-radius: 8px;
-    border: none;
-    padding: 12px 25px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .card button:hover {
-    background-color: #0088cc;
-    transform: scale(1.05);
-  }
-  
-  /* Button Styling */
-  button {
-    background-color: #00aaff;
-    color: white;
-    font-weight: bold;
-    border-radius: 8px;
-    border: none;
-    padding: 12px 25px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  button:hover {
-    background-color: #0088cc;
-    transform: scale(1.05);
-  }
-  
-  /* Responsive Design */
-@media (max-width: 768px) {
-  .admin-container {
-    padding: 15px;
-    margin-top: 50px;
-  }
-
-  .admin-header {
-    padding: 20px;
-  }
-
-  .admin-content {
-    grid-template-columns: 1fr;
-  }
-
-  .card {
-    padding: 15px;
-    max-width: 100%;
-  }
-
-  button {
-    padding: 10px 20px;
-  }
+/* Admin Content - Cards Container */
+.admin-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 20px;
+  width: 100%;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(41, 128, 185, 0.08);
 }
 
-
-
-/* Announcement Section Container */
-.announcement-section {
+/* Card Styling */
+.card {
+  flex: 1;
+  min-width: 0;
   background-color: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  padding: 20px;
-  width: 100%;
-  max-width: 800px;
-  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(41, 128, 185, 0.08);
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 20px;
 }
 
-
-.announcement-section:hover {
-  transform: translateY(-5px);
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(41, 128, 185, 0.12);
 }
 
-
-/* Section Title */
-.announcement-section h2 {
-  color: #2c3e50;
+.card h2 {
   font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 25px;
-  text-align: center;
+  font-weight: 700;
+  color: #2980b9;
+  display: inline;
+  margin-bottom: 15px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.card h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #2980b9, #3498db);
+  border-radius: 2px;
+}
+
+/* Button Styles */
+.card button {
   width: 100%;
-  position: relative;  /* Add this */
-  padding-bottom: 15px;  /* Add space for the line */
+  background-color: #2980b9;
+  color: white;
+  font-weight: 500;
+  border-radius: 10px;
+  border: none;
+  padding: 16px 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 8px rgba(41, 128, 185, 0.2);
+}
+
+.card button:hover {
+  background-color: #3498db;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(41, 128, 185, 0.3);
+}
+
+.card button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 5px rgba(41, 128, 185, 0.2);
+}
+
+/* Responsive Designs */
+@media (max-width: 1200px) {
+  .admin-container {
+    padding: 1.5rem;
+    max-width: 960px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 1rem;
+  }
+
+  .admin-content {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .card {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 20px;
+  }
+
+  .card:last-child {
+    margin-bottom: 0;
+  }
+
+  .admin-header h1 {
+    font-size: 24px;
+  }
+
+  .card h2 {
+    font-size: 20px;
+  }
+
+  .card button {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Announcement Section Container - Consistent with dashboard sections */
+.announcement-section {
+  background-color: #ffffff;
+  border-radius: 12px; /* Consistent border-radius */
+  box-shadow: 0 8px 20px rgba(41, 128, 185, 0.08); /* Consistent box shadow */
+  padding: 30px; /* Consistent padding */
+  width: 100%;
+  max-width: 800px; /* Consistent max width */
+  margin: 20px auto; /* Consistent margin */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Consistent gap */
+  transition: all 0.3s ease; /* Hover transition */
+}
+
+.announcement-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(41, 128, 185, 0.12);
+}
+
+.announcement-section h2 {
+  color: #2980b9; /* Consistent title color */
+  font-size: 28px; /* Consistent section title size */
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px; /* Underline space */
 }
 
 .announcement-section h2::after {
@@ -172,125 +243,105 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background-color: #00aaff;
-  border-radius: 2px;
+  width: 60px; /* Consistent underline width */
+  height: 4px; /* Consistent underline height */
+  background-color: #2980b9; /* Underline color */
+  border-radius: 2px; /* Underline border-radius */
 }
+
+
+/* Form Elements - Consistent with dashboard forms */
 .select-container {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0;
 }
 
 .select-container label {
   display: block;
-  margin-bottom: 8px;
-  color: #2c3e50;
-  font-weight: 500;
+  margin-bottom: 8px; /* Consistent label margin */
+  color: #34495e; /* Label color */
+  font-weight: 600; /* Label font weight */
+  font-size: 16px; /* Label font size */
 }
 
 .employee-select {
   width: 100%;
-  padding: 12px;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  background-color: #f8f9fa;
-  font-size: 16px;
+  padding: 12px 18px 12px 40px;
+  border: 1px solid #ddd; /* Input border */
+  border-radius: 10px; /* Input border-radius */
+  background-color: #f8f9fa; /* Input background */
+  font-size: 16px; /* Input font size */
   color: #2c3e50;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position-x: right; 
+  background-position-y: center;
 }
 
-.employee-select:focus {
-  outline: none;
-  border-color: #00aaff;
-  box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.1);
+.employee-select::-ms-expand {
+  display: none;
 }
 
-/* Textarea Container */
+
 .announcement-section textarea {
-  width: 90%;
+  width: 100%;
   min-height: 120px;
-  padding: 15px;
+  padding: 12px 18px; /* Consistent textarea padding */
   margin: 0 auto;
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
-  background-color: #f8f9fa;
-  font-size: 16px;
-  line-height: 1.5;
+  border: 1px solid #ddd; /* Textarea border */
+  border-radius: 10px; /* Textarea border-radius */
+  background-color: #f8f9fa; /* Textarea background */
+  font-size: 16px; /* Textarea font size */
+  line-height: 1.6;
   resize: vertical;
+  color: #2c3e50; /* Text color */
 }
 
-.announcement-section select {
-  width: 90%;
-  padding: 8px;
-  margin: 10px 0;
-  border: 2px solid #e0e0e0;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-
-.announcement-section textarea:focus {
-  outline: none;
-  border-color: #00aaff;
-  box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.1);
-}
-
-.announcement-section textarea::placeholder {
-  color: #94a3b8;
-}
-
-/* Submit Button */
 .submit-btn {
-  width: 250px;
-  margin: 0 auto;
-  padding: 12px 24px;
-  background-color: #00aaff;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  width: auto;
+  min-width: 180px; 
+  max-width: 280px; 
+  margin: 20px auto 0;
+  padding: 16px 25px; 
+  background-color: #2980b9; 
+  color: white;
+  font-weight: 500; /* Consistent button font weight */
+  border-radius: 10px; /* Consistent button border-radius */
+  display: block; /* Block display for centering */
 }
 
-.submit-btn:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
 
-.submit-btn:not(:disabled):hover {
-  background-color: #0096e6;
-  transform: translateY(-2px);
-}
-
-/* Status Message Styling */
+/* Status Messages - Consistent with dashboard status messages */
 .status-message {
   text-align: center;
-  padding: 12px;
-  border-radius: 8px;
-  margin: 0 auto;
-  width: 90%;
-  animation: fadeIn 0.3s ease forwards;
+  padding: 12px 18px; /* Consistent status message padding */
+  border-radius: 10px; /* Consistent status message border-radius */
+  margin: 15px auto 0;
+  width: 100%;
+  max-width: 800px; /* Consistent max width for messages */
+  animation: fadeIn 0.5s ease-out forwards; /* Fade-in animation */
 }
 
 .status-message.success {
-  background-color: #dcfce7;
-  color: #166534;
-  border: 1px solid #86efac;
+  background-color: #d4edda; /* Success message background */
+  color: #155724; /* Success message color */
+  border: 1px solid #c3e6cb; /* Success message border */
 }
 
 .status-message.error {
-  background-color: #fee2e2;
-  color: #991b1b;
-  border: 1px solid #fca5a5;
+  background-color: #fee2e2; /* Error message background */
+  color: #991b1b; /* Error message color */
+  border: 1px solid #fca5a5; /* Error message border */
 }
 
-/* Fade In Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(25px);
   }
   to {
     opacity: 1;
@@ -298,25 +349,214 @@
   }
 }
 
-/* Responsive Design */
+
+/* Larger Desktop Optimization - Consistent with dashboard large desktop styles */
+@media (min-width: 1200px) {
+  .admin-container {
+    padding: 1.5rem;
+    max-width: 960px;
+  }
+
+
+  .admin-header,
+  .announcement-section,
+  .card {
+    padding: 35px;
+    border-radius: 14px;
+  }
+}
+
 @media (max-width: 768px) {
+  .main-content{
+    padding-top: 10px;
+  }
+  .admin-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    justify-items: stretch;
+    padding: 10px;
+  }
+  .admin-container {
+    padding: 0.9rem;
+    margin-top: 50px; /* Adjust top margin for mobile view */
+  }
+
+  .admin-header,
+  .card,
   .announcement-section {
-    padding: 20px;
-    margin: 20px 15px;
+    padding: 25px;
+    border-radius: 10px;
   }
 
+  .admin-header h1 {
+    font-size: 23px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+
+  .admin-header h1::after {
+    width: 50px;
+    height: 4px;
+    border-radius: 2px;
+  }
+
+  .card h2,
   .announcement-section h2 {
-    font-size: 20px;
+    font-size: 23px;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
   }
 
-  .announcement-section textarea {
-    min-height: 100px;
-    font-size: 14px;
-    padding: 12px;
+  .card h2::after,
+  .announcement-section h2::after {
+    width: 50px;
+    height: 4px;
+    border-radius: 2px;
+  }
+
+
+  .actions-container { /* If you have action buttons, adapt styles */
+    gap: 20px;
+    padding: 15px 0;
+  }
+
+  .actions-container button {
+    max-height: fit-content;
+    font-size: 1rem;
+    padding: 14px 20px;
+    border-radius: 8px;
+    min-width: 160px;
+  }
+
+  .actions-container button {
+    max-width: 100%;
+  }
+
+  .employee-select,
+  .announcement-section textarea,
+  .status-message {
+    font-size: 1rem;
+    padding: 12px 16px;
+    border-radius: 8px;
   }
 
   .submit-btn {
-    padding: 10px 20px;
+    color: white;
+    font-size: 1rem;
+    padding: 14px 20px;
+    border-radius: 8px;
+  }
+
+
+  .card {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 15px; /* from block 1 - more appropriate for vertical stacking */
+    padding: 20px;
+  }
+
+
+  .card button { /* Styles from Block 1 for card buttons */
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Mobile 480px and below - Further reduce sizes for very small screens */
+@media (max-width: 480px) {
+  .main-content{
+    padding-top: 10px;
+  }
+  .admin-container {
+    padding: 10px;
+    margin-top: 50px; /* Adjust top margin for very small mobile view */
+    gap: 10px;
+  }
+  
+  .admin-header {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .admin-header h1 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+  }
+
+  .admin-header h1::after {
+    width: 30px;
+    height: 2px;
+    border-radius: 2px;
+  }
+
+  .admin-header p {
     font-size: 14px;
+  }
+
+
+  .announcement-section {
+    padding: 15px;
+    margin: 5px auto;
+    border-radius: 8px;
+    gap: 10px;
+  }
+
+  .announcement-section h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+  }
+
+  .announcement-section h2::after {
+    width: 30px;
+    height: 2px;
+    border-radius: 2px;
+  }
+
+
+  .admin-content {
+    padding: 5px;
+    gap: 10px;
+  }
+
+  .card {
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+
+  .card h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+  }
+
+  .card h2::after {
+    width: 30px;
+    height: 2px;
+    border-radius: 2px;
+  }
+
+
+  button, .card button {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    border-radius: 6px;
+  }
+
+  .employee-select,
+  .announcement-section textarea,
+  .status-message {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+  }
+
+  .submit-btn {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    border-radius: 6px;
   }
 }

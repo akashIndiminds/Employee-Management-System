@@ -1,5 +1,6 @@
+<div class="monthly-report-page">
 <app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
-
+<div class="main-content">
 <app-sidebar [(isOpen)]="isSidebarOpen"></app-sidebar>
 <div class="report-container">
     <h2>Monthly Attendance Report</h2>
@@ -62,4 +63,6 @@
     <div *ngIf="attendanceData.length > 0">
       <button (click)="downloadExcel()">Download Full Report (Excel)</button>
     </div>
+</div>
+</div>
 </div>

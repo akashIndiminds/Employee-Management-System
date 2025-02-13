@@ -1,18 +1,20 @@
-/* General Styles */
-* {
-  margin: 0;
-  padding: 0;
+
+/* Add at top of CSS */
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
-body {
-  background-color: #fcfcfc;
-  font-family: 'Arial', sans-serif;
-  color: #34495e;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.register-page {
   min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+ 
+}
+
+.main-content {
+  display: flex;
+  min-height: 100vh;
+  padding-top: 65px; /* Match TopBar height */
+  flex-direction: column; /* Ensure the layout is column-based */
 }
 
 /* Container for the registration form */
@@ -24,7 +26,6 @@ body {
   border-radius: 15px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
-  margin-top: 76px;
 }
 
 .register-container:hover {
@@ -151,8 +152,7 @@ button:disabled {
 /* Mobile responsiveness */
 @media (max-width: 600px) {
   .register-container {
-      padding: 20px;
-      margin-top: 60px;
+    padding: 0.5rem;
   }
 
   .form-title {

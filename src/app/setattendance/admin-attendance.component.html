@@ -1,7 +1,8 @@
 
   <!-- TopBar: Displayed at the top -->
+   <div class="set-attendance-page">
 <app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
-
+<div class="main-content">
 <app-sidebar [(isOpen)]="isSidebarOpen"></app-sidebar>
 
 <div class="attendance-container">
@@ -86,4 +87,5 @@
     </form>
     
   </div>
-  
+</div>
+</div>

@@ -1,9 +1,10 @@
 <!-- TopBar: Displayed at the top -->
+ <div class="leave-page">
 <app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
 
+<div class="main-content">
 <app-sidebar
-  [isOpen]="isSidebarOpen"
-  (isOpenChange)="isSidebarOpen = $event"
+  [isOpen]="isSidebarOpen" (isOpenChange)="isSidebarOpen = $event"
 ></app-sidebar>
 
 
@@ -35,5 +36,6 @@
     </button>
   </form>
 </div>
-
+</div>
+</div>
   
