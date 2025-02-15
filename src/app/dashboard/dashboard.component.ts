@@ -129,7 +129,7 @@ markAttendance(): void {
 // Method to handle "View Payslips" button click
 viewPayslips(): void {
   
-  this.router.navigate(['/payslip']);
+  this.router.navigate(['/payroll']);
 }
 
 }

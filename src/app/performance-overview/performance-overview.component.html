@@ -1,0 +1,9 @@
+<div class="performance-overview-container">
+    <div class="header">
+      <h2>{{ title }} {{ date }}</h2>
+    </div>
+    <div class="status-section">
+      <span class="status" [ngClass]="statusClass">{{ status }}</span>
+      <button (click)="onViewReportClick()">View Report</button>
+    </div>
+  </div>

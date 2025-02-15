@@ -1,0 +1,62 @@
+.performance-overview-container {
+    background-color: #f0f0f0; /* Light grey background */
+    border: 1px solid #ccc; /* Light grey border */
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between; /* Distribute space between header and status section */
+    align-items: center; /* Vertically align items in the container */
+  }
+  
+  .header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333; /* Dark grey text color for header */
+  }
+  
+  .status-section {
+    display: flex;
+    align-items: center; /* Vertically align status and button */
+    gap: 15px; /* Spacing between status and button */
+  }
+  
+  .status {
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* Status-specific classes (dynamically applied) */
+  .status-completed {
+    background-color: green;
+  }
+  
+  .status-pending {
+    background-color: orange;
+  }
+  
+  .status-failed {
+    background-color: red;
+  }
+  
+  .status-default { /* For statuses not explicitly handled */
+    background-color: grey;
+  }
+  
+  
+  button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Blue button color */
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }

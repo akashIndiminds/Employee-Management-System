@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Renderer2, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import necessary module
 import { ButtonModule } from 'primeng/button'; // For PrimeNG buttons
 import { SidebarModule } from 'primeng/sidebar'; // For PrimeNG sidebar
@@ -14,19 +14,58 @@ import { CheckInService } from '../services/checkin.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit, OnDestroy {
   @Input() isOpen: boolean = false;  // Sidebar visibility controlled by parent component
   @Output() isOpenChange = new EventEmitter<boolean>();  // Emit event to toggle sidebar visibility
   private _isOpen = false;
+  private bodyScrollListener!: () => void;
+
+  constructor(
+    private router: Router,
+     private authService: AuthService, 
+     private attendanceService: AttendanceService, 
+     private checkInService: CheckInService,
+     private renderer: Renderer2
+    ) {}
+
+    ngOnInit() {
+      // Add event listener to prevent body scroll when sidebar is open
+      this.bodyScrollListener = this.renderer.listen('body', 'scroll', (event) => {
+        if (this.isOpen) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      });
+    }
+
+    ngOnDestroy() {
+      // Clean up event listener
+      if (this.bodyScrollListener) {
+        this.bodyScrollListener();
+      }
+    }
+    handleOverlayClick(event: MouseEvent) {
+      if (event.target === event.currentTarget) { // Only if clicking the overlay itself
+        event.preventDefault();
+        event.stopPropagation();
+        this.toggle();
+      }
+    }
   
-  constructor(private router: Router, private authService: AuthService, private attendanceService: AttendanceService, private checkInService: CheckInService ) {}
-  
-  toggle() {
-    // Only emit the event, let parent handle the state
-    this.isOpenChange.emit(!this.isOpen);
-  }
+    toggle() {
+      const newState = !this.isOpen;
+      this.isOpenChange.emit(newState);
+      
+      // Handle body scroll
+      if (newState) {
+        this.renderer.addClass(document.body, 'sidebar-open');
+      } else {
+        this.renderer.removeClass(document.body, 'sidebar-open');
+      }
+    }
 
   stopSidebarClose(event: MouseEvent) {
+
     // Prevent the sidebar from closing if the click is not on the close button
     const closeButton = event.target as HTMLElement;
     if (closeButton && closeButton.classList.contains('close-btn')) {

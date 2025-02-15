@@ -1,0 +1,92 @@
+<app-topbar (toggleSidebar)="toggleSidebar()" [isMobile]="isMobileView"></app-topbar>
+
+<app-sidebar
+  [isOpen]="isSidebarOpen"
+  (isOpenChange)="isSidebarOpen = $event"
+></app-sidebar>
+
+<div class="payslip-container">
+  <h2>Payroll Calculator</h2>
+
+  <!-- Display any error messages -->
+  <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <!-- Payroll Calculation Form -->
+  <form (ngSubmit)="calculatePayroll()" #payrollForm="ngForm">
+    <div class="form-group">
+      <label for="employeeId">Employee ID:</label>
+      <input
+        type="text"
+        id="employeeId"
+        [(ngModel)]="employeeId"
+        name="employeeId"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="employeeName">Employee Name:</label>
+      <input
+        type="text"
+        id="employeeName"
+        [(ngModel)]="employeeName"
+        name="employeeName"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="salaryMonth">Salary Month:</label>
+      <input
+        type="text"
+        id="salaryMonth"
+        [(ngModel)]="salaryMonth"
+        name="salaryMonth"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="totalDaysWorked">Total Days Worked:</label>
+      <input
+        type="number"
+        id="totalDaysWorked"
+        [(ngModel)]="totalDaysWorked"
+        name="totalDaysWorked"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="totalAbsent">Total Absent Days:</label>
+      <input
+        type="number"
+        id="totalAbsent"
+        [(ngModel)]="totalAbsent"
+        name="totalAbsent"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="totalOvertime">Total Overtime Hours:</label>
+      <input
+        type="number"
+        id="totalOvertime"
+        [(ngModel)]="totalOvertime"
+        name="totalOvertime"
+        required
+      />
+    </div>
+    <button type="submit">Calculate Payroll</button>
+  </form>
+
+  <!-- Generated Payslip -->
+  <div *ngIf="payslipData" class="payslip-card">
+    <p><strong>Employee ID:</strong> {{ payslipData.employeeId }}</p>
+    <p><strong>Name:</strong> {{ payslipData.employeeName }}</p>
+    <p><strong>Salary Month:</strong> {{ payslipData.salaryMonth }}</p>
+    <hr />
+    <p><strong>Basic Pay:</strong> ₹{{ payslipData.basicPay | number }}</p>
+    <p><strong>Deductions:</strong> ₹{{ payslipData.deductions | number }}</p>
+    <p><strong>Overtime Pay:</strong> ₹{{ payslipData.overtimePay | number }}</p>
+    <p class="net-salary">
+      <strong>Net Salary:</strong> ₹{{ payslipData.netSalary | number }}
+    </p>
+  </div>
+</div>

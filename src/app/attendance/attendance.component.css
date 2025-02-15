@@ -2,7 +2,6 @@
 .attendance-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-  /*margin-top: 50px; /* Remove margin-top to make sure the page starts from the top */
 }
 
 .main-content {
@@ -44,8 +43,20 @@
 
 
 
+.title-section {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
 
-
+.current-date {
+  font-size: 18px;
+  color: #666;
+  font-size: 1.62rem; /* Adjusted size */
+  color: #56a2ee;
+}
 
 
 
@@ -267,6 +278,9 @@
   }
   .intro-text{
     font-size: 1.1rem;
+  }
+  .current-date {
+    font-size: 16px;
   }
   
 }

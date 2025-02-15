@@ -117,6 +117,7 @@ export class AttendanceComponent implements OnInit {
   selectedStatus: number = 1;
   private lastToastMessage: string | null = null;
   isMobileView: boolean = false;
+  currentDate: Date = new Date();
   statusOptions = [
     { id: 1, status: 'Present' },
     { id: 2, status: 'Absent' },

@@ -12,7 +12,7 @@
       <label>Select Employee</label>
       <select [(ngModel)]="selectedEmployee" (ngModelChange)="onSelectionChange()">
         <option *ngFor="let employee of employeeCodes" [value]="employee.Value">
-          {{ employee.Text }} ({{ employee.Value }})
+          {{ employee.Text }} 
         </option>
       </select>
     </div>
@@ -56,22 +56,28 @@
           'weekend': day.isWeekend,
           'other-month': !day.isCurrentMonth,
           'present': day.attendance?.status === 'Present',
+          'half-day': day.attendance?.status === 'Half Day',
           'absent': day.isCurrentMonth && !day.attendance
         }"
       >
         <div class="date">{{ day.date?.getDate() }}</div>
         <div class="attendance-info" *ngIf="day.attendance">
           <div class="hours">{{ day.attendance.hours_worked.toFixed(2) }} hrs</div>
+          <div class="overtime" *ngIf="day.attendance.overtime_hours > 0">
+            +{{ day.attendance.overtime_hours.toFixed(2) }} OT
+          </div>
           <div class="time">
             {{ day.attendance.check_in.slice(0, 5) }} - 
-            {{ day.attendance.check_out ? day.attendance.check_out.slice(0, 5) : '0.00' }}
+            {{ day.attendance.check_out ? day.attendance.check_out.slice(0, 5) : '--:--' }}
           </div>
-          <div 
-            class="status" 
-            *ngIf="day.attendance.arrival_status.toLowerCase() !== 'on time'" 
-            [ngClass]="day.attendance.arrival_status.toLowerCase().replace(' ', '-')">
-            {{ day.attendance.arrival_status }}
-          </div>
+          <div class="status"
+          [ngClass]="day.attendance.arrival_status.toLowerCase().replace(' ', '-')"
+          *ngIf="day.attendance.arrival_status.toLowerCase() !== 'on time'">
+          {{ day.attendance.arrival_status }}
+     </div>
+     <div class="status on-time" *ngIf="day.attendance.arrival_status.toLowerCase() === 'on time'">
+        {{ day.attendance.arrival_status }}
+     </div>
         </div>
         
         <div class="absent-marker" *ngIf="day.isCurrentMonth && !day.attendance">
@@ -83,6 +89,9 @@
     <div class="attendance-summary" *ngIf="attendanceData">
       <div class="total-hours">
         Total Hours: {{ attendanceData.summary.total_hours_worked.toFixed(2) }}
+      </div>
+      <div class="total-overtime">
+        Total Overtime: {{ attendanceData.summary.total_overtime_hours.toFixed(2) }}
       </div>
     </div>
   </div>

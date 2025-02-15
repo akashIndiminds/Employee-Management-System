@@ -1,6 +1,6 @@
 <div class="attendance-page">
   <!-- TopBar at the top -->
-  <app-topbar (toggleSidebar)="toggleSidebar()" [isMobile]="isMobileView"></app-topbar>
+  <app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
 
   <!-- Sidebar and Main Content -->
   <div class="main-content">
@@ -8,9 +8,15 @@
     <app-sidebar [(isOpen)]="isSidebarOpen"></app-sidebar>
 
     <!-- Attendance Container -->
-    <div class="attendance-container">
+  <!-- Attendance Container -->
+<div class="attendance-container">
+  <div class="attendance-header">
+    <div class="title-section">
       <h1 class="page-title">Attendance</h1>
-      <p class="intro-text">Mark your attendance and stay updated on your working hours.</p>
+      <span class="current-date">{{ currentDate | date:'EEEE, MMMM d, y' }}</span>
+    </div>
+    <p class="intro-text">Mark your attendance and stay updated on your working hours.</p>
+  </div>
 
       <!-- Status and Remarks Section -->
       <div class="status-selection">

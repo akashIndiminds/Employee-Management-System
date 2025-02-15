@@ -29,6 +29,9 @@ export class ReportComponent {
     if (report.title === 'Monthly Attendance Report') {
       this.router.navigate(['/monthlyreports']);
     }
+    if (report.title === 'Performance Overview') {
+      this.router.navigate(['/performance-overview']);
+    }
   }
 
   toggleSidebar(): void {

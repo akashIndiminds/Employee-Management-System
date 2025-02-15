@@ -382,3 +382,36 @@ select:focus {
         font-size: 0.8em; /* Increased time size */
     }
 }
+/* Add these new styles without modifying existing ones */
+/* Add these new styles without modifying existing ones */
+.overtime {
+    color: red; /* Change to ensure visibility */
+    font-weight: bold;
+  }
+
+  .total-overtime {
+    color: #2ecc71;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+
+  .half-day {
+    background-color: #fcf8e3;
+  }
+
+  .status.late {
+    background-color: #d9534f; /* Example late status color */
+    color: white;
+  }
+
+  .status.on-time {
+    background-color: #5cb85c; /* Example on-time status color */
+    color: white;
+  }
+
+  .status.very-late {
+    background-color: #f0ad4e; /* Example very-late status color */
+    color: white;
+  }
+
+

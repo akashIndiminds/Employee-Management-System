@@ -136,12 +136,19 @@ export class DailyAttendanceComponent implements OnInit, OnDestroy {
   fetchAttendanceData(): void {
     this.isLoading = true;
     this.error = null;
-
+  
     this.monthlyEmployeeService
       .getMonthlyEmployeeDetails(this.selectedEmployee, this.selectedMonth, this.selectedYear)
       .subscribe({
-        next: (response) => {
-          this.attendanceData = response;
+        next: (response: any) => {  // Using 'any' to bypass TypeScript strict checks
+          if (response && response.attendance_details) {
+            response.attendance_details = response.attendance_details.map((detail: any) => ({
+              ...detail,
+              overtime_hours: detail.overtime_hours ?? 0, // Ensure this field is always present
+            }));
+          }
+  
+          this.attendanceData = response as AttendanceResponse; // Explicit type assertion
           this.isLoading = false;
         },
         error: (error) => {
@@ -150,6 +157,7 @@ export class DailyAttendanceComponent implements OnInit, OnDestroy {
         },
       });
   }
+  
 
   generateCalendarDays(year: number, month: number): CalendarDay[] {
     const firstDay = new Date(Date.UTC(year, month - 1, 1));

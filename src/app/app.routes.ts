@@ -9,8 +9,10 @@ import { AdminAttendanceComponent} from './setattendance/admin-attendance.compon
 import {SettingsComponent} from './settings/settings.component';
 import { MonthlyReportComponent } from './monthlyreports/MonthlyReportComponent';
 import { LeaveComponent } from './leave/leave.component';
-import { PayslipComponent } from './payslip/payslip.component';
-import { DailyAttendanceComponent } from './DailyAttendance/daily-attendance.component';
+import { PayrollCalculatorComponent } from './payroll/payroll-calculator.component';
+import { DailyAttendanceComponent } from './daily-attendance-report/daily-attendance.component';
+import { PerformanceOverviewComponent } from './performance-overview/performance-overview.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -24,6 +26,7 @@ export const routes: Routes = [
   {path: 'settings', component: SettingsComponent },
   {path: 'monthlyreports', component: MonthlyReportComponent},
   { path: 'leave', component: LeaveComponent },
-  { path: 'payslip', component: PayslipComponent },
-  {path: 'daily-attendance', component:DailyAttendanceComponent}
+  { path: 'payroll', component: PayrollCalculatorComponent },
+  {path: 'daily-attendance', component:DailyAttendanceComponent},
+  {path: 'performance-overview', component:PerformanceOverviewComponent}
 ];
