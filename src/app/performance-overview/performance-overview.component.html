@@ -1,9 +1,90 @@
-<div class="performance-overview-container">
-    <div class="header">
-      <h2>{{ title }} {{ date }}</h2>
-    </div>
-    <div class="status-section">
-      <span class="status" [ngClass]="statusClass">{{ status }}</span>
-      <button (click)="onViewReportClick()">View Report</button>
+<!-- performance-overview.component.html -->
+<div class="set-attendance-page">
+  <app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
+  <div class="main-content">
+    <app-sidebar [(isOpen)]="isSidebarOpen"></app-sidebar>
+    <div class="performance-overview-container">
+      <!-- Header -->
+      <div class="header">
+        <h2>{{ title }} - {{ date }}</h2>
+      </div>
+      
+    <!-- Attendance Summary Cards -->
+<div class="attendance-summary">
+  <div class="card present">
+    <h3>{{ totalPresent }}</h3>
+    <p>Present Days</p>
+  </div>
+  <div class="card absent">
+    <h3>{{ totalAbsent }}</h3>
+    <p>Absent Days</p>
+  </div>
+  <div class="card half-day">
+    <h3>{{ totalHalfDays }}</h3>
+    <p>Half Days</p>
+  </div>
+  <div class="card leave">
+    <h3>{{ totalLeave }}</h3>
+    <p>Leave Days</p>
+  </div>
+  <div class="card wfh">
+    <h3>{{ totalWorkFromHome }}</h3>
+    <p>Work From Home</p>
+  </div>
+</div>
+
+    
+      <!-- Bar Chart: Employee Attendance -->
+      <div class="chart-container">
+        <canvas 
+          baseChart
+          [type]="'bar'"
+          [data]="barChartData"
+          [options]="barChartOptions">
+        </canvas>
+      </div>
+    
+      <!-- Pie Chart: Attendance Distribution -->
+      <div class="chart-container">
+        <canvas
+          baseChart
+          [type]="'pie'"
+          [data]="pieChartData">
+        </canvas>
+      </div>
+    
+      <!-- Line Chart: Weekly Trends -->
+      <div class="chart-container">
+        <canvas
+          baseChart
+          [type]="'line'"
+          [data]="lineChartData"
+          [options]="lineChartOptions">
+        </canvas>
+      </div>
+    
+      <!-- Employee Leaderboard -->
+      <div class="leaderboard">
+        <h3>Top 3 Most Punctual Employees</h3>
+        <ul>
+          <li *ngFor="let employee of topEmployees">
+            {{ employee.name }} - {{ employee.presentDays }} Days
+          </li>
+        </ul>
+      </div>
+    
+      <!-- Dynamic Attendance Badges -->
+      <div class="badge-container">
+        <span *ngIf="totalAbsent === 0" class="badge gold">Perfect Attendance</span>
+        <span *ngIf="totalAbsent > 3 && totalAbsent <= 5" class="badge silver">Needs Improvement</span>
+        <span *ngIf="totalAbsent > 5" class="badge red">Poor Attendance</span>
+      </div>
+    
+      <!-- Status Section & Report Button -->
+      <div class="status-section">
+        <span class="status" [ngClass]="statusClass">{{ status }}</span>
+        <button (click)="onViewReportClick()">View Report</button>
+      </div>
     </div>
   </div>
+</div>

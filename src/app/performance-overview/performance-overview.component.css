@@ -1,62 +1,307 @@
-.performance-overview-container {
-    background-color: #f0f0f0; /* Light grey background */
-    border: 1px solid #ccc; /* Light grey border */
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between; /* Distribute space between header and status section */
-    align-items: center; /* Vertically align items in the container */
+/* Styles for the set attendance page - Mobile Optimized */
+
+.set-attendance-page {
+  display: flex;
+  flex-direction: column;
+  height: auto; /* Ensure it adapts dynamically */
+  width: auto;
+  background-color: #f4f4f4;
+ }
+
+ /* Main content section */
+ .main-content {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  margin-top: 50px;
+  transition: margin-left 0.3s ease-in-out;
+ }
+
+ /* Container for Performance Overview */
+ .performance-overview-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: calc(100% - 40px);
+ }
+
+ /* Grid Layout */
+ .header {
+  grid-column: 1 / span 2;
+  text-align: center;
+  margin-bottom: 20px;
+ }
+
+ .attendance-summary {
+  grid-column: 1 / span 2;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+ }
+
+ /* Attendance Summary Cards */
+ .card {
+  width: 150px;
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ }
+
+ .present { background-color: #28a745; } /* Green */
+ .absent { background-color: #dc3545; } /* Red */
+ .half-day { background-color: #ffc107; color: black; } /* Yellow */
+ .leave { background-color: #007bff; } /* Blue */
+ .wfh { background-color: #8e44ad; } /* Purple */
+
+ /* Chart Containers */
+ .chart-container {
+  width: 100%;
+  min-width: 300px;
+  max-width: 100%;
+  margin: 0 auto;
+ }
+
+ .chart-container:nth-child(5) { grid-column: 1 / span 1; } /* Bar Chart */
+ .chart-container:nth-child(6) { grid-column: 2 / span 1; } /* Pie Chart */
+ .chart-container:nth-child(7) { grid-column: 1 / span 1; } /* Line Chart */
+
+ /* Leaderboard */
+ .leaderboard {
+  grid-column: 2 / span 1;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  text-align: center;
+ }
+
+ .leaderboard h3 {
+  font-size: 18px;
+ }
+
+ .leaderboard ul {
+  list-style-type: none;
+  padding: 0;
+ }
+
+ .leaderboard li {
+  padding: 5px;
+  font-size: 16px;
+  font-weight: bold;
+ }
+
+ /* Badge Container */
+ .badge-container {
+  grid-column: 1 / span 1;
+  text-align: center;
+  margin-top: 15px;
+ }
+
+ /* Badge Styles */
+ .badge {
+  padding: 8px 12px;
+  border-radius: 15px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  margin: 0 5px;
+ }
+
+ .gold { background-color: #ffc107; }
+ .silver { background-color: #6c757d; }
+ .red { background-color: #dc3545; }
+
+ /* Status Section */
+ .status-section {
+  grid-column: 1 / span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 20px;
+ }
+
+ .status-section > * {
+  margin: 5px 0;
+ }
+
+ /* Status Badge */
+ .status {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+ }
+
+ .status.present {
+  background-color: #28a745;
+  color: white;
+ }
+
+ /* Buttons */
+ button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+ }
+
+ button:hover {
+  background-color: #0056b3;
+ }
+
+ /* Responsive Design - Enhanced for Mobile */
+ @media (max-width: 768px) {
+  .main-content {
+   flex-direction: column; /* Stack main content vertically */
+   padding: 15px;        /* Slightly reduced padding */
+   margin-top: 20px;      /* Reduce top margin on mobile */
   }
-  
-  .header h2 {
-    margin: 0;
-    font-size: 1.5em;
-    color: #333; /* Dark grey text color for header */
+
+  .performance-overview-container {
+   display: flex;          /* Change to flexbox for mobile */
+   flex-direction: column; /* Stack items vertically in container */
+   gap: 15px;              /* Adjust gap between items */
+   margin: 15px auto;      /* Adjust container margins */
+   padding: 15px;          /* Reduce padding inside container */
+   width: calc(100% - 30px);/* Adjust width for mobile padding */
   }
-  
+
+  /* Reset grid for mobile to stack elements */
+  .header,
+  .attendance-summary,
+  .chart-container,
+  .leaderboard,
+  .badge-container,
   .status-section {
-    display: flex;
-    align-items: center; /* Vertically align status and button */
-    gap: 15px; /* Spacing between status and button */
+   grid-column: auto; /* Reset grid column to default */
+   width: 100%;       /* Make elements take full width */
+   display: flex;       /* Enable flexbox for these sections */
+   flex-direction: column; /* Stack elements within these sections */
+   align-items: center;  /* Center items horizontally */
   }
-  
+
+  .attendance-summary {
+   display: flex;        /* Keep flex display */
+   flex-direction: column; /* Stack cards vertically */
+   gap: 10px;             /* Reduced gap between cards */
+   align-items: stretch;  /* Cards stretch to full width */
+   margin-bottom: 10px;   /* Reduced bottom margin */
+  }
+
+  .card {
+   flex: 1;             /* Allow cards to flex */
+   width: auto;          /* Reset width to auto for flex basis to work */
+   min-width: 0;        /* Allow cards to shrink below content width */
+   box-sizing: border-box; /* Include padding and border in element's total width and height */
+   padding: 10px;         /* Slightly reduce card padding */
+   font-size: 14px;      /* Slightly smaller font in cards */
+  }
+
+  .chart-container {
+   max-width: 100%;      /* Ensure charts take full width */
+   min-width: auto;      /* Reset min-width */
+   margin-bottom: 15px;
+   overflow-x: auto;    /* **Enable horizontal scroll if content overflows** */
+   overflow-y: hidden; 
+   white-space: nowrap;  /*  Prevent chart content from wrapping, force horizontal layout */
+   padding-bottom: 10px;   /* Add margin below charts */
+  }
+  .chart-container canvas {
+    width: auto;         /* Let the canvas width be determined by chart content */
+    min-width: 100%;      /* Ensure canvas is at least 100% of container width initially */
+   }
+  .leaderboard {
+   margin-top: 15px;     /* Reduced margin for leaderboard */
+   padding: 8px;          /* Slightly reduced padding */
+  }
+
+  .leaderboard h3 {
+   font-size: 16px;      /* Smaller header in leaderboard */
+  }
+
+  .leaderboard li {
+   font-size: 14px;      /* Smaller font in leaderboard list */
+  }
+
+  .badge-container {
+   margin-top: 10px;     /* Reduced margin for badges */
+  }
+
+  .badge {
+   font-size: 12px;      /* Smaller font in badges */
+   padding: 6px 10px;     /* Reduced badge padding */
+  }
+
+  .status-section {
+   margin-top: 15px;     /* Reduced margin for status section */
+  }
+
   .status {
-    padding: 8px 15px;
-    border-radius: 20px;
-    color: white;
-    font-weight: bold;
+   font-size: 16px;      /* Smaller status font */
+   padding: 6px 12px;     /* Reduced status padding */
   }
-  
-  /* Status-specific classes (dynamically applied) */
-  .status-completed {
-    background-color: green;
-  }
-  
-  .status-pending {
-    background-color: orange;
-  }
-  
-  .status-failed {
-    background-color: red;
-  }
-  
-  .status-default { /* For statuses not explicitly handled */
-    background-color: grey;
-  }
-  
-  
+
   button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff; /* Blue button color */
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+   font-size: 14px;      /* Smaller button font */
+   padding: 8px 12px;     /* Reduced button padding */
   }
+
   
-  button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+ }
+
+ /* Extra Small Screens (e.g., very narrow phones) */
+ @media (max-width: 480px) {
+  .main-content {
+   padding: 10px;         /* Even smaller padding for very small screens */
   }
+  .chart-container {
+    max-width: 100%;      /* Ensure charts take full width */
+    min-width: auto;      /* Reset min-width */
+    margin-bottom: 15px;
+    overflow-x: auto;    /* **Enable horizontal scroll if content overflows** */
+    overflow-y: hidden; 
+    white-space: nowrap;  /*  Prevent chart content from wrapping, force horizontal layout */
+    padding-bottom: 10px;   /* Add margin below charts */
+   }
+   .chart-container canvas {
+     width: auto;         /* Let the canvas width be determined by chart content */
+     min-width: 100%;      /* Ensure canvas is at least 100% of container width initially */
+    }
+  .performance-overview-container {
+   width: calc(100% - 20px); /* Further reduce container width */
+   padding: 10px;         /* Even smaller padding inside container */
+  }
+
+  .card {
+   font-size: 13px;      /* Even smaller font in cards */
+   padding: 8px;          /* Even smaller card padding */
+  }
+
+  .badge {
+   font-size: 11px;      /* Even smaller badge font */
+  }
+
+  .status {
+   font-size: 15px;      /* Even smaller status font */
+  }
+
+  button {
+   font-size: 13px;      /* Even smaller button font */
+  }
+ }
